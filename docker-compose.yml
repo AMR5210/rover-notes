@@ -1,0 +1,99 @@
+# Local development stack.
+#
+# Four services: one Postgres handling vector, full-text, graph, and queue work,
+# object storage, and two small model servers. Sized to match the workload described
+# in `docs/ARCHITECTURE.md`, with the reasoning behind each choice.
+#
+# Image tags are pinned to exact versions. The floating `pg17` tag moved from pgvector
+# 0.8.1 to 0.8.6 during development without the compose file changing, which makes the
+# stack unreproducible and, more importantly, makes patch status unknowable — 0.8.2
+# fixed CVE-2026-3172, a buffer overflow in parallel HNSW index builds. Verified
+# versions: PostgreSQL 17.10 with pgvector 0.8.6, and TEI cpu-1.9.3.
+
+name: rover-notes
+
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.6-pg17
+    environment:
+      POSTGRES_USER: rover
+      POSTGRES_PASSWORD: rover
+      POSTGRES_DB: rover
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rover -d rover"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    command:
+      # Keep the working set in memory; HNSW is memory-resident and this box is small.
+      - "postgres"
+      - "-c"
+      - "shared_buffers=512MB"
+      - "-c"
+      - "maintenance_work_mem=512MB"   # HNSW index builds want this
+      - "-c"
+      - "max_parallel_maintenance_workers=2"
+
+  # S3-compatible object storage for raw documents.
+  # Local development only — production uses S3 or Cloudflare R2. See docs/ARCHITECTURE.md.
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: rover
+      MINIO_ROOT_PASSWORD: roverrover
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  # Embeddings. A small model suits this well: it runs comfortably on CPU and is
+  # called on every chunk at ingest and every query at retrieval. See docs/ARCHITECTURE.md.
+  embeddings:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+    command: ["--model-id", "BAAI/bge-small-en-v1.5", "--port", "80"]
+    ports:
+      - "8081:80"
+    volumes:
+      - hfcache:/data
+    # The image sets HUGGINGFACE_HUB_CACHE=/data, which the hfcache volume backs, so
+    # weights persist across restarts and only the first start needs the Hub.
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  # Cross-encoder reranker. MiniLM (~22M params) keeps 40 pairs at roughly 100ms on
+  # CPU, where a ~570M-param model would take a few seconds. See docs/ARCHITECTURE.md.
+  reranker:
+    image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+    command: ["--model-id", "cross-encoder/ms-marco-MiniLM-L-6-v2", "--port", "80"]
+    ports:
+      - "8082:80"
+    volumes:
+      - hfcache:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  # Langfuse (LLM tracing) is added once there are model calls worth tracing.
+
+volumes:
+  pgdata:
+  miniodata:
+  hfcache:

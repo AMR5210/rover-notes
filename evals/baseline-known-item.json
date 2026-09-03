@@ -1,0 +1,1076 @@
+{
+  "timestamp": "2026-08-09T09:15:25.307441+00:00",
+  "mode": "default",
+  "rerank": "default",
+  "route": "default",
+  "relevance": "passage",
+  "queries_scored": 117,
+  "queries_unanswerable": 0,
+  "metrics": {
+    "ndcg@10": 0.9272,
+    "recall@5": 0.9744,
+    "recall@20": 0.9915,
+    "mrr": 0.9082
+  },
+  "latency_ms": {
+    "mean": 18.0,
+    "p95": 52.9
+  },
+  "unanswerable_mean_hits": 0.0,
+  "per_query": [
+    {
+      "id": "ki001",
+      "query": "expand_entity",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "kt001",
+      "query": "agent tool loop",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn001",
+      "query": "agent tol loop",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki002",
+      "query": "OAuth2",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt002",
+      "query": "auth supabase jwt",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn002",
+      "query": "auth spuabase jwt",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki003",
+      "query": "point-in-time",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt003",
+      "query": "backup and restore",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn003",
+      "query": "backup and rsetore",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki004",
+      "query": "boundary-spanning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn004",
+      "query": "cuhnking strategy",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "ki005",
+      "query": "post-processing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt004",
+      "query": "citation grounding",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn005",
+      "query": "citation gorunding",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "ki006",
+      "query": "max_connections",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt005",
+      "query": "connection pooling",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn006",
+      "query": "conection pooling",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki007",
+      "query": "claude-haiku-4-5",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn007",
+      "query": "cnotextual retrieval",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki008",
+      "query": "A10G",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt006",
+      "query": "cost model",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn008",
+      "query": "cost mdoel",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki009",
+      "query": "Terraform-managed",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt007",
+      "query": "deployment ecs",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn009",
+      "query": "dpeloyment ecs",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki010",
+      "query": "append-based",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt008",
+      "query": "design ingestion pipeline",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn010",
+      "query": "design ignestion pipeline",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki011",
+      "query": "cross-tenant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt009",
+      "query": "design security model",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn011",
+      "query": "design sceurity model",
+      "ndcg@10": 0.0,
+      "recall@5": 0.0,
+      "recall@20": 0.0,
+      "rr": 0.0,
+      "hits": 0
+    },
+    {
+      "id": "ki012",
+      "query": "per-request",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt010",
+      "query": "design storage and retention",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn012",
+      "query": "design storage and rteention",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "ki013",
+      "query": "pipe-delimited",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt011",
+      "query": "document parsing pdf",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn013",
+      "query": "dcoument parsing pdf",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki014",
+      "query": "ms-marco-MiniLM-L-6-v2",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt012",
+      "query": "embedding models",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn014",
+      "query": "embeding models",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki015",
+      "query": "near-duplicates",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt013",
+      "query": "entity graph",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn015",
+      "query": "etnity graph",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "ki016",
+      "query": "known-relevant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt014",
+      "query": "eval methodology",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn016",
+      "query": "eval mtehodology",
+      "ndcg@10": 0.0,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.0625,
+      "hits": 1
+    },
+    {
+      "id": "ki017",
+      "query": "shortest-path",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt015",
+      "query": "graph traversal limits",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn017",
+      "query": "graph tarversal limits",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt016",
+      "query": "guide api reference",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn018",
+      "query": "guide api rfeerence",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt017",
+      "query": "guide local development",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn019",
+      "query": "guide local dveelopment",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki018",
+      "query": "th-percentile",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "kt018",
+      "query": "guide performance tuning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn020",
+      "query": "guide preformance tuning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki019",
+      "query": "maintenance_work_mem",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt019",
+      "query": "hnsw index tuning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn021",
+      "query": "hnsw index tnuing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki020",
+      "query": "ts_rank_cd",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt020",
+      "query": "hybrid retrieval",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn022",
+      "query": "hybrid rterieval",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki021",
+      "query": "list_documents",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "kt021",
+      "query": "mcp server",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn023",
+      "query": "mcp srever",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt022",
+      "query": "model registry",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn024",
+      "query": "model rgeistry",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "ki022",
+      "query": "ModularityTests",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn025",
+      "query": "modular mnoolith",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki023",
+      "query": "hnsw.iterative_scan",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt023",
+      "query": "multi tenancy isolation",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn026",
+      "query": "multi tenancy ioslation",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki024",
+      "query": "OpenTelemetry",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt024",
+      "query": "observability tracing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn027",
+      "query": "osbervability tracing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki025",
+      "query": "event_publication",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt025",
+      "query": "outbox pattern",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn028",
+      "query": "outbox patern",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki026",
+      "query": "vector_cosine_ops",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt026",
+      "query": "pgvector operators",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn029",
+      "query": "pgvector oeprators",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki027",
+      "query": "change-data-capture",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt027",
+      "query": "postgres job queue",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn030",
+      "query": "psotgres job queue",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki028",
+      "query": "cache_control",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn031",
+      "query": "prompt ccahing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki029",
+      "query": "never-wrong",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt028",
+      "query": "query routing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn032",
+      "query": "query ruoting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki030",
+      "query": "Retry-After",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt029",
+      "query": "rate limiting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn033",
+      "query": "rate lmiiting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki031",
+      "query": "per-call",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt030",
+      "query": "reranker latency",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn034",
+      "query": "rreanker latency",
+      "ndcg@10": 0.3869,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.2,
+      "hits": 1
+    },
+    {
+      "id": "ki032",
+      "query": "single-instance",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt031",
+      "query": "runbook capacity planning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn035",
+      "query": "runbok capacity planning",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki033",
+      "query": "single-threaded",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt032",
+      "query": "runbook database operations",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn036",
+      "query": "runbok database operations",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki034",
+      "query": "SEV3",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt033",
+      "query": "runbook incident response",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn037",
+      "query": "runbok incident response",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki035",
+      "query": "Cross-encoders",
+      "ndcg@10": 0.4228,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.1667,
+      "hits": 2
+    },
+    {
+      "id": "kt034",
+      "query": "runbook model upgrades",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn038",
+      "query": "runbok model upgrades",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn039",
+      "query": "semantic cuhnking",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "ki036",
+      "query": "ApplicationModuleListener",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt035",
+      "query": "spring modulith events",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "kn040",
+      "query": "spring mdoulith events",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "ki037",
+      "query": "server-to-client",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kt036",
+      "query": "sse streaming",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn041",
+      "query": "se streaming",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "ki038",
+      "query": "created_at",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "kt037",
+      "query": "token accounting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kn042",
+      "query": "token acounting",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    }
+  ],
+  "golden": "golden-known-item"
+}

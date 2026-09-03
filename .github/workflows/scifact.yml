@@ -1,0 +1,121 @@
+name: SciFact
+
+# The hand-written corpus is 42 documents. At that size the query planner does not choose
+# the vector index and most measured differences come back with a confidence interval
+# spanning zero, so the per-push eval gate cannot see an index-related regression at all.
+# SciFact is 5,183 abstracts — past the point where HNSW is used — and scoring it takes
+# long enough that it belongs on a schedule rather than on every push.
+#
+# A failure here means retrieval moved on the larger collection while the small one stayed
+# flat. That is the case the per-push gate is structurally unable to report.
+on:
+  schedule:
+    # Sunday 04:00 UTC. Weekly rather than nightly, because of what it costs: the job
+    # measures at 35 billable minutes a run, and this repository is private, so nightly
+    # spent about 1,050 of the 2,000 Actions minutes a GitHub Free account gets each
+    # month — more than half the allowance, on a schedule that runs whether or not
+    # anything changed. Exhausting the allowance stops every workflow, including the
+    # per-push gate, which would cost more than a slower cadence does.
+    #
+    # Weekly is defensible because of what this job watches. It reports a regression in
+    # the vector index, which moves when retrieval, chunking or the embedding model
+    # changes — not on its own. Anything that could move it is a commit, and a commit can
+    # dispatch this manually.
+    - cron: "0 4 * * 0"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  scifact:
+    name: Eval gate (SciFact, nDCG@10)
+    runs-on: ubuntu-latest
+    # Ingesting 5,183 abstracts through the live API and scoring 300 claims runs to about
+    # a quarter of an hour once the embedding model is warm. The allowance is generous
+    # because a cold model download and a cold Gradle cache both land in the same job.
+    timeout-minutes: 90
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17
+        env:
+          POSTGRES_USER: rover
+          POSTGRES_PASSWORD: rover
+          POSTGRES_DB: rover
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rover -d rover"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      embeddings:
+        image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+        # Must match the model used at ingest and the vector(384) column.
+        env:
+          MODEL_ID: BAAI/bge-small-en-v1.5
+        ports: ["8081:80"]
+        options: >-
+          --health-cmd "curl -fsS http://localhost:80/health || exit 1"
+          --health-interval 10s --health-timeout 5s --health-retries 30
+          --health-start-period 60s
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+      - uses: astral-sh/setup-uv@v5
+
+      # The archive is pinned by SHA-256, so a cache hit is the same bytes the committed
+      # baseline was produced from. A miss downloads it again and verifies the digest.
+      - name: Cache the BEIR archive
+        uses: actions/cache@v4
+        with:
+          path: evals/.cache
+          key: beir-scifact-${{ hashFiles('ml-service/src/ml_service/evals/build_beir.py') }}
+
+      # Flyway runs inside the application, so starting it also applies the schema.
+      - name: Start the API
+        working-directory: api
+        run: nohup ./gradlew bootRun --args='--spring.profiles.active=local' > api.log 2>&1 &
+
+      - name: Wait for readiness
+        run: |
+          for _ in $(seq 1 60); do
+            curl -sf localhost:8081/health >/dev/null && break || sleep 5
+          done
+          for _ in $(seq 1 60); do
+            curl -sf localhost:8080/actuator/health >/dev/null && break || sleep 5
+          done
+          curl -sf localhost:8081/health
+          curl -sf localhost:8080/actuator/health
+
+      # Neither the corpus nor the golden set is committed: BEIR data is third-party and
+      # redistributing it here is out of scope, so both are rebuilt from the pinned
+      # archive on every run.
+      - name: Build the SciFact suite
+        working-directory: ml-service
+        run: |
+          uv sync --extra evals --dev
+          uv run python -m ml_service.evals.build_beir scifact
+
+      - name: Seed the collection and gate on retrieval quality
+        working-directory: ml-service
+        run: |
+          uv run python -m ml_service.evals.run --seed --gate --threshold 0.03 \
+            --corpus ../evals/corpus-scifact \
+            --golden ../evals/golden-scifact \
+            --baseline ../evals/baseline-scifact.json
+
+      - name: Upload the scored run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scifact-run
+          path: |
+            evals/runs
+            api/api.log
+          if-no-files-found: ignore

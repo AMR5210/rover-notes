@@ -1,0 +1,860 @@
+{
+  "timestamp": "2026-08-09T09:15:26.223625+00:00",
+  "mode": "default",
+  "rerank": "default",
+  "route": "default",
+  "relevance": "passage",
+  "queries_scored": 93,
+  "queries_unanswerable": 0,
+  "metrics": {
+    "ndcg@10": 0.9713,
+    "recall@5": 0.9892,
+    "recall@20": 1.0,
+    "mrr": 0.9651
+  },
+  "latency_ms": {
+    "mean": 4.1,
+    "p95": 6.8
+  },
+  "unanswerable_mean_hits": 0.0,
+  "per_query": [
+    {
+      "id": "kh001",
+      "query": "claude-sonnet-5",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh002",
+      "query": "pre-assembled",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh003",
+      "query": "multi-step",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh004",
+      "query": "RS256",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh005",
+      "query": "standards-compliant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh006",
+      "query": "application-level",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh007",
+      "query": "issuer-URI",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh008",
+      "query": "sign-ins",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh009",
+      "query": "UUID",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh010",
+      "query": "JWKS",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh011",
+      "query": "re-embed",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh012",
+      "query": "fixed-size",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh013",
+      "query": "start-end",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh014",
+      "query": "mid-word",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh015",
+      "query": "doc-slug",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh016",
+      "query": "leakDetectionThreshold",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh017",
+      "query": "maximumPoolSize",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh018",
+      "query": "HikariCP",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh019",
+      "query": "self-hosting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh020",
+      "query": "Self-hosting",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh021",
+      "query": "Break-even",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh022",
+      "query": "per-token",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh023",
+      "query": "re-sent",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh024",
+      "query": "event-driven",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh025",
+      "query": "Next.js",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh026",
+      "query": "cross-site",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh027",
+      "query": "re-upload",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh028",
+      "query": "PyMuPDF",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh029",
+      "query": "bge-reranker-v2-m3",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh030",
+      "query": "bge-small-en-v1.5",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "kh031",
+      "query": "self-hosted",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "kh032",
+      "query": "bi-encoder",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh033",
+      "query": "MiniLM",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh034",
+      "query": "BAAI",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "kh035",
+      "query": "near-duplicate",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh036",
+      "query": "free-form",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh037",
+      "query": "visited-set",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh038",
+      "query": "Fan-out",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh039",
+      "query": "event-source",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh040",
+      "query": "server-side",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh041",
+      "query": "per-subject",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh042",
+      "query": "stage-zero",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh043",
+      "query": "ef_construction",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh044",
+      "query": "ef_search",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh045",
+      "query": "brute-force",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh046",
+      "query": "IVFFlat",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh047",
+      "query": "ts_rank",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh048",
+      "query": "BM25",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh049",
+      "query": "MCP-capable",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh050",
+      "query": "package-level",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh051",
+      "query": "compile-time",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh052",
+      "query": "Cross-module",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh053",
+      "query": "single-tenant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh054",
+      "query": "Multi-tenant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh055",
+      "query": "per-tenant",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh056",
+      "query": "Row-level",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh057",
+      "query": "OTLP",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh058",
+      "query": "completion_date",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh059",
+      "query": "at-least-once",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh060",
+      "query": "halfvec",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh061",
+      "query": "L2-normalised",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh062",
+      "query": "log-structured",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh063",
+      "query": "NOTIFY",
+      "ndcg@10": 0.0,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.0833,
+      "hits": 1
+    },
+    {
+      "id": "kh064",
+      "query": "re-processing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh065",
+      "query": "re-processed",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh066",
+      "query": "three-way",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh067",
+      "query": "in-process",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh068",
+      "query": "ONNX",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh069",
+      "query": "index-in-memory",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "kh070",
+      "query": "fastest-growing",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh071",
+      "query": "single-digit",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh072",
+      "query": "Long-lived",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh073",
+      "query": "per-table",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh074",
+      "query": "B-trees",
+      "ndcg@10": 0.5706,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "kh075",
+      "query": "SEV2",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh076",
+      "query": "SEV1",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh077",
+      "query": "task-definition",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh078",
+      "query": "on-call",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh079",
+      "query": "non-null",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh080",
+      "query": "DocumentDeleted",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh081",
+      "query": "ChunkEmbedded",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh082",
+      "query": "NoteIndexed",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh083",
+      "query": "NoteCreated",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh084",
+      "query": "Last-Event-ID",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh085",
+      "query": "event-stream",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh086",
+      "query": "Server-Sent",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh087",
+      "query": "WebSocket",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh088",
+      "query": "floating-point",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh089",
+      "query": "micro-dollars",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh090",
+      "query": "cache-write",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh091",
+      "query": "append-only",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh092",
+      "query": "cache-read",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "kh093",
+      "query": "in-app",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    }
+  ],
+  "golden": "golden-known-item-heldout"
+}

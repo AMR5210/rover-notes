@@ -1,0 +1,362 @@
+name: CI
+
+# Every job here checks work that exists: the build and its tests, the schema against
+# pgvector, the Python quality gate, the browser tests, and retrieval quality against the
+# committed baseline.
+#
+# Dispatched rather than run on push, which is a budget decision with a number behind it.
+# A full run billed 26 minutes when the trigger was removed — 18 of them in the Java job —
+# against the 2,000 a month this private repository gets on a GitHub Free account. At that
+# rate the allowance covered about 77 runs, and this branch reached CI run 65 within sixteen
+# days of the repository being created. An exhausted allowance stops every workflow, so a
+# per-push trigger buys immediate feedback at the price of the gate being unavailable when
+# a change actually needs it.
+#
+# The Java job has since been cut from 982 seconds to 78 locally, by sharing one database
+# container across the suite rather than starting one per test class. Run 66 measured what
+# that is worth here: about 15 billable minutes for the five jobs, with the Java job at
+# 4 m 30 s rather than 18 minutes, so the allowance covers roughly 133 runs a month rather
+# than 77. The trigger stays dispatch-only regardless — sixteen commits landed in one day
+# on this branch, which at 15 minutes each is more than a tenth of the month spent on work
+# `make gate` had already checked. Cheaper runs move the constraint from what a run costs
+# to how often one is worth starting.
+#
+# What replaces it is `make gate`, which runs the same commands as the Python, lint and
+# Java jobs on the machine the commit is written on. Dispatch a run when the question is
+# one only a clean runner can answer — a dependency resolved from scratch, a container
+# image, a cached path — and before anything that would be merged:
+#
+#   gh workflow run ci.yml --ref <branch>
+#
+# `pull_request` is kept because a run there gates a merge rather than reporting on work
+# in progress, and this project opens pull requests rarely.
+on:
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  api:
+    name: API (Java 21)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+
+      # Integration tests run against pgvector via Testcontainers, matching the
+      # engine used in production. The schema relies on vector columns, tsvector
+      # generated columns, pg_trgm, partial indexes, and SKIP LOCKED, so testing
+      # against the real thing keeps the results meaningful.
+      - name: Build and test
+        working-directory: api
+        run: ./gradlew build --no-daemon
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-test-results
+          path: api/build/reports/tests/test
+          if-no-files-found: ignore
+
+  schema:
+    name: Schema (pgvector)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17
+        env:
+          POSTGRES_USER: rover
+          POSTGRES_PASSWORD: rover
+          POSTGRES_DB: rover
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rover -d rover"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+
+      # Applies the baseline migration, then exercises the retrieval pattern it
+      # supports: dense search, lexical search, trigram routing, RRF fusion, and an
+      # outbox SKIP LOCKED claim. This confirms the schema behaves correctly, not
+      # just that the DDL parses.
+      - name: Apply migration and smoke-test the retrieval pattern
+        env:
+          PGPASSWORD: rover
+        run: |
+          psql -h localhost -U rover -d rover -v ON_ERROR_STOP=1 \
+            -f api/src/main/resources/db/migration/V1__baseline.sql
+          psql -h localhost -U rover -d rover -v ON_ERROR_STOP=1 \
+            -f api/src/test/resources/db/schema-smoke.sql
+          psql -h localhost -U rover -d rover -v ON_ERROR_STOP=1 \
+            -f api/src/test/resources/db/retrieval-smoke.sql
+
+  ml:
+    name: ML service (Python 3.12)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ml-service
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      # Base dependencies, dev tools, and the parsing extra. The extra is optional at
+      # runtime — the service starts without it and answers 501 on the upload and clip
+      # paths — but the tests covering those paths import pdfplumber and trafilatura at
+      # module level, so leaving it out collects three test modules as errors rather than
+      # running them. The evals extra stays out; its job installs it below.
+      - run: uv sync --dev --extra parsing
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run mypy src
+      - run: uv run pytest
+      # The known-item slice is generated from the corpus. This fails if the corpus
+      # changed without the slice being regenerated, which would silently score the
+      # pipeline against queries the corpus no longer supports.
+      - run: uv run python -m ml_service.evals.build_known_item --check
+
+  # Known vulnerabilities in dependencies, across all three ecosystems.
+  #
+  # This service stores documents somebody trusted it with, so a published CVE in a
+  # transitive dependency is exposure rather than housekeeping — and until this job
+  # existed nothing in the repository would have reported one.
+  #
+  # It fails the build on high and critical only. Every lockfile of this size carries low
+  # and moderate advisories that are not reachable from the code, and a gate that fires on
+  # those is a gate that gets bypassed; the full report is printed either way, so the
+  # quieter findings are still visible to anyone reading the log.
+  audit:
+    name: Dependency audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: npm audit
+        working-directory: web
+        run: |
+          npm ci
+          npm audit --audit-level=high
+
+      - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      # pip-audit reads the resolved environment rather than the manifest, so it sees
+      # transitive pins as installed rather than as ranges.
+      - name: pip-audit
+        working-directory: ml-service
+        run: |
+          uv sync --dev
+          uvx pip-audit --strict --progress-spinner off
+
+      # Java is not scanned here, and the reason is worth stating rather than leaving as
+      # an apparent omission. This build declares its dependencies directly in
+      # build.gradle.kts with no version catalogue and no lockfile, so a file-based
+      # scanner has nothing to read and would report a clean result over an empty set —
+      # worse than no job, because it would look like coverage.
+      #
+      # Gradle is instead covered by Dependabot, which resolves the build itself and
+      # raises security advisories against what it resolves; see .github/dependabot.yml.
+      # Bringing it in here would mean adopting dependency locking, which is worth doing
+      # for reproducibility on its own terms rather than as a side effect of this job.
+      - name: Note on Java coverage
+        run: echo "Gradle dependencies are covered by Dependabot alerts, not by this job."
+
+  # The interface is the only consumer of the character offsets on a search hit, so a
+  # change to the response shape or to chunking would break the citation highlight while
+  # every other job stayed green. These tests drive a real browser against a real API.
+  web:
+    name: Web (browser tests)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17
+        env:
+          POSTGRES_USER: rover
+          POSTGRES_PASSWORD: rover
+          POSTGRES_DB: rover
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rover -d rover"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      embeddings:
+        image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+        env:
+          MODEL_ID: BAAI/bge-small-en-v1.5
+        ports: ["8081:80"]
+        options: >-
+          --health-cmd "curl -fsS http://localhost:80/health || exit 1"
+          --health-interval 10s --health-timeout 5s --health-retries 30
+          --health-start-period 60s
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Start the API
+        working-directory: api
+        run: nohup ./gradlew bootRun --args='--spring.profiles.active=local' > api.log 2>&1 &
+
+      - name: Install and build the interface
+        working-directory: web
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run build
+
+      - name: Wait for readiness
+        run: |
+          for _ in $(seq 1 60); do
+            curl -sf localhost:8081/health >/dev/null && break || sleep 5
+          done
+          for _ in $(seq 1 60); do
+            curl -sf localhost:8080/actuator/health >/dev/null && break || sleep 5
+          done
+          curl -sf localhost:8081/health
+          curl -sf localhost:8080/actuator/health
+
+      # The tests create and delete their own documents, so no corpus is seeded here.
+      # ANTHROPIC_API_KEY is not configured in CI, and the answer tests skip themselves
+      # when /api/ask cannot reach a model; the span checks do not need one.
+      - name: Run the browser tests
+        working-directory: web
+        run: npm test
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-test-report
+          path: |
+            web/playwright-report
+            web/test-results
+            api/api.log
+          if-no-files-found: ignore
+
+  # Gives retrieval quality the same standing as a unit test: a change that ranks
+  # worse than evals/baseline.json fails the build.
+  eval-gate:
+    name: Eval gate (nDCG@10 regression)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:0.8.6-pg17
+        env:
+          POSTGRES_USER: rover
+          POSTGRES_PASSWORD: rover
+          POSTGRES_DB: rover
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U rover -d rover"
+          --health-interval 5s --health-timeout 5s --health-retries 20
+      embeddings:
+        image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+        # Service containers cannot override the image command, so the model is
+        # selected through MODEL_ID — TEI reads every CLI flag from the environment.
+        # It must match the model used at ingest and the vector(384) column.
+        env:
+          MODEL_ID: BAAI/bge-small-en-v1.5
+        ports: ["8081:80"]
+        options: >-
+          --health-cmd "curl -fsS http://localhost:80/health || exit 1"
+          --health-interval 10s --health-timeout 5s --health-retries 30
+          --health-start-period 60s
+      reranker:
+        image: ghcr.io/huggingface/text-embeddings-inference:cpu-1.9
+        env:
+          MODEL_ID: cross-encoder/ms-marco-MiniLM-L-6-v2
+        ports: ["8082:80"]
+        options: >-
+          --health-cmd "curl -fsS http://localhost:80/health || exit 1"
+          --health-interval 10s --health-timeout 5s --health-retries 30
+          --health-start-period 60s
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: gradle
+      - uses: astral-sh/setup-uv@v5
+
+      # Flyway runs inside the application, so starting it also applies the schema.
+      - name: Start the API
+        working-directory: api
+        run: nohup ./gradlew bootRun --args='--spring.profiles.active=local' > api.log 2>&1 &
+
+      - name: Wait for readiness
+        run: |
+          for port in 8081 8082; do
+            for _ in $(seq 1 60); do
+              curl -sf "localhost:$port/health" >/dev/null && break || sleep 5
+            done
+          done
+          for _ in $(seq 1 60); do
+            curl -sf localhost:8080/actuator/health >/dev/null && break || sleep 5
+          done
+          curl -sf localhost:8081/health
+          curl -sf localhost:8082/health
+          curl -sf localhost:8080/actuator/health
+
+      - name: Seed the corpus and gate on retrieval quality
+        working-directory: ml-service
+        run: |
+          uv sync --extra evals --dev
+          uv run python -m ml_service.evals.run --seed --gate --threshold 0.03
+
+      # Known-item lookups are a separate task with a separate baseline, so they get
+      # their own gate. The corpus is already seeded by the step above.
+      - name: Gate on known-item retrieval quality
+        working-directory: ml-service
+        run: |
+          uv run python -m ml_service.evals.run --gate --threshold 0.03 \
+            --golden ../evals/golden-known-item \
+            --baseline ../evals/baseline-known-item.json
+
+      # The held-out identifiers are the population the main slice did not select.
+      # Routing regressions show up here that the selected identifiers do not show.
+      - name: Gate on held-out identifier retrieval quality
+        working-directory: ml-service
+        run: |
+          uv run python -m ml_service.evals.run --gate --threshold 0.03 \
+            --golden ../evals/golden-known-item-heldout \
+            --baseline ../evals/baseline-known-item-heldout.json
+
+      - name: Upload the scored run
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eval-gate-run
+          path: |
+            evals/runs
+            api/api.log
+          if-no-files-found: ignore

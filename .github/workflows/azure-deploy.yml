@@ -1,0 +1,107 @@
+name: Azure deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      credential_fallback:
+        description: Use ACR admin credentials and a storage connection string instead of RBAC.
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+      location:
+        description: Azure region.
+        required: false
+        default: westus
+      resource_group:
+        description: Azure resource group.
+        required: false
+        default: rover-notes
+      name_prefix:
+        description: Prefix for Azure resource names.
+        required: false
+        default: rovernotes
+
+concurrency:
+  group: azure-deploy-${{ github.event.inputs.resource_group || 'rover-notes' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  deploy:
+    name: Build, push, and deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      RESOURCE_GROUP: ${{ github.event.inputs.resource_group || 'rover-notes' }}
+      LOCATION: ${{ github.event.inputs.location || 'westus' }}
+      NAME_PREFIX: ${{ github.event.inputs.name_prefix || 'rovernotes' }}
+      AZURE_CREDENTIAL_FALLBACK: ${{ github.event.inputs.credential_fallback || 'false' }}
+      POSTGRES_PASSWORD: ${{ secrets.AZURE_POSTGRES_PASSWORD }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      ROVER_KEY_ENCRYPTION_KEY: ${{ secrets.ROVER_KEY_ENCRYPTION_KEY }}
+      MAIL_HOST: ${{ secrets.MAIL_HOST }}
+      MAIL_PORT: ${{ vars.MAIL_PORT || '587' }}
+      MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+      MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+      MAIL_FROM: ${{ vars.MAIL_FROM || 'no-reply@rovernotes.dev' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Azure login
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Validate required deployment secrets
+        run: |
+          missing=0
+          for name in AZURE_POSTGRES_PASSWORD ANTHROPIC_API_KEY ROVER_KEY_ENCRYPTION_KEY MAIL_HOST; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::Missing required secret: $name"
+              missing=1
+            fi
+          done
+          exit "$missing"
+        env:
+          AZURE_POSTGRES_PASSWORD: ${{ secrets.AZURE_POSTGRES_PASSWORD }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ROVER_KEY_ENCRYPTION_KEY: ${{ secrets.ROVER_KEY_ENCRYPTION_KEY }}
+          MAIL_HOST: ${{ secrets.MAIL_HOST }}
+
+      - name: Build images, push to ACR, and deploy Container Apps
+        id: deploy
+        run: |
+          set -o pipefail
+          started="$(date -u +%s)"
+          ./infra/deploy.sh | tee deploy.log
+          finished="$(date -u +%s)"
+          echo "duration_seconds=$((finished - started))" >> "$GITHUB_OUTPUT"
+          web_url="$(awk '/^deployed[.] / { print $2 }' deploy.log | tail -n 1)"
+          if [ -n "$web_url" ] && [ "$web_url" != "check" ]; then
+            echo "web_url=$web_url" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Deployment summary
+        run: |
+          {
+            echo "## Azure deployment"
+            echo
+            echo "- Resource group: \`$RESOURCE_GROUP\`"
+            echo "- Region: \`$LOCATION\`"
+            echo "- Image tag: \`$(git rev-parse --short HEAD)\`"
+            echo "- Credential fallback: \`$AZURE_CREDENTIAL_FALLBACK\`"
+            echo "- Duration: \`${{ steps.deploy.outputs.duration_seconds }}s\`"
+            if [ -n "${{ steps.deploy.outputs.web_url }}" ]; then
+              echo "- Frontend: ${{ steps.deploy.outputs.web_url }}"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

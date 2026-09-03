@@ -1,0 +1,43 @@
+# LOCAL DEVELOPMENT ONLY.
+#
+# Activated with SPRING_PROFILES_ACTIVE=local. Disables JWT validation so the API
+# can be run without Supabase credentials during Week 1. Every request is attributed
+# to a fixed development owner.
+#
+# This profile must never be active in a deployed environment. The default profile
+# requires a valid issuer URI and rejects unauthenticated requests.
+
+rover:
+  security:
+    # Bypass JWT validation and treat all requests as this owner.
+    dev-owner-id: 00000000-0000-0000-0000-000000000001
+
+  rate-limit:
+    # Off for this profile. Nothing here authenticates, so every request keys on the same
+    # loopback address and counts as one caller — and the two harnesses that drive this
+    # profile are exactly the ones that would exceed it. The retrieval eval issues 136
+    # requests back to back, and load/search.js drives roughly 106 a second by design; a
+    # limit would make both of them measurements of the limiter.
+    #
+    # The filter is still wired into this profile's chain, so a test can switch the limit
+    # back on with a property rather than exercising a chain the deployed profile does not
+    # use. RateLimitFilterTest does exactly that.
+    enabled: false
+
+  identity:
+    # Supplied here because the default profile has none: a deployed service must state
+    # the address it issues tokens from rather than inherit one, and this is the address
+    # a developer actually reaches it at.
+    issuer: http://localhost:8080
+
+    # A fixed key for local development, so signing keys survive a restart on a developer
+    # machine. It is committed on purpose and is worthless: it protects keys that only
+    # ever sign tokens for the fixed owner above, in a profile that accepts every request
+    # unauthenticated anyway. A deployed environment supplies ROVER_KEY_ENCRYPTION_KEY and
+    # fails to start without it.
+    key-encryption-key: bG9jYWwtZGV2ZWxvcG1lbnQta2V5LW5vdC1zZWNyZXQ=
+
+logging:
+  level:
+    dev.rovernotes: DEBUG
+    org.springframework.jdbc.core: DEBUG

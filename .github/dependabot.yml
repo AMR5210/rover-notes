@@ -1,0 +1,88 @@
+# Dependency updates.
+#
+# This service stores people's documents, so a published vulnerability in a transitive
+# dependency is a real exposure and something has to watch for one.
+#
+# Routine version updates are switched off. `open-pull-requests-limit: 0` disables them
+# per ecosystem, which is the documented way to do it. On a repository that is not under
+# active maintenance they produce a steady stream of pull requests nobody merges, and a
+# list of stale open PRs is worse than none: it buries the one that matters and reads as
+# an abandoned project.
+#
+# What still runs:
+#
+#   Dependabot alerts     notifications, no branches, no pull requests
+#   Security updates      exempt from the limit above, so a pull request is opened when a
+#                         dependency has a published vulnerability — which is the only
+#                         time one is worth reading
+#   The CI audit job      npm audit and pip-audit, failing the build at high severity
+#
+# So a branch appears when there is a vulnerability, and at no other time.
+#
+# The groups below take effect if version updates are turned back on by raising a limit.
+# They exist because the failure mode of dependency automation is volume: Spring releases
+# its modules in lockstep, and separate pull requests for them each fail against the
+# others' versions.
+version: 2
+
+updates:
+  - package-ecosystem: gradle
+    directory: /api
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+    groups:
+      spring:
+        patterns:
+          - "org.springframework*"
+          - "io.spring*"
+      other:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "org.springframework*"
+          - "io.spring*"
+
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+    groups:
+      next:
+        patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+      other:
+        patterns:
+          - "*"
+        exclude-patterns:
+          - "next"
+          - "react"
+          - "react-dom"
+          - "@types/react*"
+
+  - package-ecosystem: pip
+    directory: /ml-service
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 0
+    groups:
+      all:
+        patterns:
+          - "*"
+
+  # The workflows themselves. A pinned action is a dependency like any other, and a
+  # compromised one runs with whatever the workflow can reach. Grouped into one, which the
+  # earlier configuration did not do — five actions produced five branches on first run.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    open-pull-requests-limit: 0
+    groups:
+      actions:
+        patterns:
+          - "*"

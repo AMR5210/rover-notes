@@ -1,0 +1,94 @@
+{"id":"q001","query":"How are the two ranked lists combined into one?","relevant":[{"doc":"hybrid-retrieval","contains":"Reciprocal Rank Fusion"}]}
+{"id":"q002","query":"Why not just normalise the scores before merging them?","relevant":[{"doc":"hybrid-retrieval","contains":"ranks rather than scores"}]}
+{"id":"q003","query":"What value is used for the RRF constant and where does it come from?","relevant":[{"doc":"hybrid-retrieval","contains":"2009 paper"}]}
+{"id":"q004","query":"Why keep a keyword search channel when we have embeddings?","relevant":[{"doc":"hybrid-retrieval","contains":"known-item"}]}
+{"id":"q005","query":"bge-small-en-v1.5","relevant":[{"doc":"embedding-models","contains":"384"}]}
+{"id":"q006","query":"ms-marco-MiniLM-L-6-v2","relevant":[{"doc":"embedding-models","contains":"MiniLM"}]}
+{"id":"q007","query":"How long does reranking take on CPU?","relevant":[{"doc":"embedding-models","contains":"50 to 150 milliseconds"}]}
+{"id":"q008","query":"What is the difference between a bi-encoder and a cross-encoder?","relevant":[{"doc":"embedding-models","contains":"never interact"}]}
+{"id":"q009","query":"Why is reranking applied to only 40 candidates?","relevant":[{"doc":"embedding-models","contains":"top 40"}]}
+{"id":"q010","query":"How big are the chunks and how much do they overlap?","relevant":[{"doc":"chunking-strategy","contains":"1600 characters"}]}
+{"id":"q011","query":"Why do chunks overlap at all?","relevant":[{"doc":"chunking-strategy","contains":"retrievable from neither side"}]}
+{"id":"q012","query":"How can an answer point at the exact sentence it used?","relevant":[{"doc":"chunking-strategy","contains":"character offsets"}]}
+{"id":"q013","query":"SKIP LOCKED","relevant":[{"doc":"postgres-job-queue","contains":"SKIP LOCKED"}]}
+{"id":"q014","query":"Why was Kafka not used for the ingestion pipeline?","relevant":[{"doc":"postgres-job-queue","contains":"source of truth is the documents table"}]}
+{"id":"q015","query":"How do we avoid losing an indexing job if the process restarts?","relevant":[{"doc":"postgres-job-queue","contains":"same transaction"}]}
+{"id":"q016","query":"At what throughput would the job queue need replacing?","relevant":[{"doc":"postgres-job-queue","contains":"1000 jobs per second"}]}
+{"id":"q017","query":"What tools does the MCP server expose?","relevant":[{"doc":"mcp-server","contains":"get_document"}]}
+{"id":"q018","query":"Why return snippets instead of whole documents to an agent?","relevant":[{"doc":"mcp-server","contains":"context is the scarce resource"}]}
+{"id":"q019","query":"Which metric is the headline number for retrieval quality?","relevant":[{"doc":"eval-methodology","contains":"nDCG@10 is the headline number"}]}
+{"id":"q020","query":"Why is relevance not recorded against chunk IDs?","relevant":[{"doc":"eval-methodology","contains":"chunking strategy changes"}]}
+{"id":"q021","query":"Why include questions the notes cannot answer?","relevant":[{"doc":"eval-methodology","contains":"Declining to answer"}]}
+{"id":"q022","query":"When does CI fail on retrieval quality?","relevant":[{"doc":"eval-methodology","contains":"nDCG@10 regresses by more than three"}]}
+{"id":"q023","query":"Why is Kubernetes not used?","relevant":[{"doc":"deployment-ecs","contains":"service mesh"}]}
+{"id":"q024","query":"How many separately deployed pieces are there?","relevant":[{"doc":"deployment-ecs","contains":"four deployables"}]}
+{"id":"q025","query":"Is it cheaper to run our own GPU than to call the API?","relevant":[{"doc":"cost-model","contains":"Break-even"}]}
+{"id":"q026","query":"Which model grades the evaluation?","relevant":[{"doc":"cost-model","contains":"judge"}]}
+{"id":"q027","query":"How much does prompt caching save on contextual retrieval?","relevant":[{"doc":"cost-model","contains":"1.1 million"}]}
+{"id":"q028","query":"How does the system handle sharding across multiple Postgres nodes?","relevant":[],"unanswerable":true}
+{"id":"q029","query":"What is the mobile app's offline sync protocol?","relevant":[],"unanswerable":true}
+{"id":"q030","query":"Which GraphQL schema does the public API expose?","relevant":[],"unanswerable":true}
+{"id":"q031","query":"Why was HNSW chosen instead of IVFFlat for the vector index?","relevant":[{"doc":"hnsw-index-tuning","contains":"incremental insert"}]}
+{"id":"q032","query":"How much memory do the graph links add at three hundred thousand vectors?","relevant":[{"doc":"hnsw-index-tuning","contains":"roughly 40 MB"}]}
+{"id":"q033","query":"How do you rebuild the vector index without taking search offline?","relevant":[{"doc":"hnsw-index-tuning","contains":"REINDEX INDEX CONCURRENTLY"}]}
+{"id":"q034","query":"Which operator class does the embedding index use?","relevant":[{"doc":"pgvector-operators","contains":"vector_cosine_ops"}]}
+{"id":"q035","query":"How is a distance turned back into a similarity score?","relevant":[{"doc":"pgvector-operators","contains":"1 - (a <=> b)"}]}
+{"id":"q036","query":"How does the system decide whether a question needs retrieval at all?","relevant":[{"doc":"query-routing","contains":"fixed three-way label set"}]}
+{"id":"q037","query":"How long are routing decisions cached?","relevant":[{"doc":"query-routing","contains":"one hour"}]}
+{"id":"q038","query":"What is prepended to a chunk before it gets embedded?","relevant":[{"doc":"contextual-retrieval","contains":"prepended to the chunk text"}]}
+{"id":"q039","query":"How much did adding chunk context reduce retrieval failures?","relevant":[{"doc":"contextual-retrieval","contains":"35 percent reduction"}]}
+{"id":"q040","query":"How long does a cached prompt prefix stay warm?","relevant":[{"doc":"prompt-caching","contains":"five-minute sliding time to live"}]}
+{"id":"q041","query":"What is the minimum number of tokens Sonnet will cache?","relevant":[{"doc":"prompt-caching","contains":"1024 tokens for Sonnet"}]}
+{"id":"q042","query":"What format do the inline source references use?","relevant":[{"doc":"citation-grounding","contains":"[doc-slug:start-end]"}]}
+{"id":"q043","query":"What happens when an answer cites something that cannot be resolved?","relevant":[{"doc":"citation-grounding","contains":"an unresolvable reference"}]}
+{"id":"q044","query":"Which table records an event before it is delivered?","relevant":[{"doc":"outbox-pattern","contains":"inserts a row into event_publication"}]}
+{"id":"q045","query":"How long are completed event rows kept?","relevant":[{"doc":"outbox-pattern","contains":"purged after 7 days"}]}
+{"id":"q046","query":"How many modules does the application have?","relevant":[{"doc":"modular-monolith","contains":"six Spring Modulith modules"}]}
+{"id":"q047","query":"What stops one module reaching into another module's internals?","relevant":[{"doc":"modular-monolith","contains":"ModularityTests case"}]}
+{"id":"q048","query":"Which annotation marks a listener that runs after the transaction commits?","relevant":[{"doc":"spring-modulith-events","contains":"@ApplicationModuleListener"}]}
+{"id":"q049","query":"Why do event payloads carry identifiers instead of whole objects?","relevant":[{"doc":"spring-modulith-events","contains":"Payloads carry identifiers rather than entities"}]}
+{"id":"q050","query":"Which claim from the token becomes the owner identifier?","relevant":[{"doc":"auth-supabase-jwt","contains":"The sub claim becomes owner_id"}]}
+{"id":"q051","query":"How long are the signing keys cached before refetching?","relevant":[{"doc":"auth-supabase-jwt","contains":"caches the keys for 5 minutes"}]}
+{"id":"q052","query":"What setting keeps a filtered vector search from returning too few rows?","relevant":[{"doc":"multi-tenancy-isolation","contains":"hnsw.iterative_scan"}]}
+{"id":"q053","query":"Why has row-level security not been turned on?","relevant":[{"doc":"multi-tenancy-isolation","contains":"Row-level security is deferred"}]}
+{"id":"q054","query":"Which header propagates a trace across service boundaries?","relevant":[{"doc":"observability-tracing","contains":"W3C traceparent header"}]}
+{"id":"q055","query":"What fraction of requests are traced?","relevant":[{"doc":"observability-tracing","contains":"Sampling is set to 100 percent"}]}
+{"id":"q056","query":"Why are floating model tags avoided?","relevant":[{"doc":"model-registry","contains":"Floating aliases such as \"latest\" are not used"}]}
+{"id":"q057","query":"How is spend per request stored without floating point drift?","relevant":[{"doc":"token-accounting","contains":"micro-dollars stored as an integer"}]}
+{"id":"q058","query":"When do per-request usage rows get rolled up?","relevant":[{"doc":"token-accounting","contains":"rolled into daily summaries after 90 days"}]}
+{"id":"q059","query":"What is the request quota per user per minute?","relevant":[{"doc":"rate-limiting","contains":"60 requests per minute"}]}
+{"id":"q060","query":"Where is the rate limiter's state kept?","relevant":[{"doc":"rate-limiting","contains":"token bucket held in Postgres"}]}
+{"id":"q061","query":"Which library pulls the text out of a PDF?","relevant":[{"doc":"document-parsing-pdf","contains":"Text extraction uses PyMuPDF"}]}
+{"id":"q062","query":"What is the largest document that can be uploaded?","relevant":[{"doc":"document-parsing-pdf","contains":"capped at 50 MB and 500 pages"}]}
+{"id":"q063","query":"What kinds of things are extracted as entities?","relevant":[{"doc":"entity-graph","contains":"person, project, technology, and decision"}]}
+{"id":"q064","query":"How many neighbours can one node expand to?","relevant":[{"doc":"graph-traversal-limits","contains":"capped at 25 neighbours per node"}]}
+{"id":"q065","query":"What stops graph expansion revisiting the same node?","relevant":[{"doc":"graph-traversal-limits","contains":"visited-set guard"}]}
+{"id":"q066","query":"How does a dropped stream resume where it left off?","relevant":[{"doc":"sse-streaming","contains":"reconnects with Last-Event-ID"}]}
+{"id":"q067","query":"What keeps an idle stream connection from being closed?","relevant":[{"doc":"sse-streaming","contains":"15 second heartbeat comment"}]}
+{"id":"q068","query":"How many times will the agent loop before giving up?","relevant":[{"doc":"agent-tool-loop","contains":"capped at 5 iterations"}]}
+{"id":"q069","query":"How is a tool result shortened before going back to the model?","relevant":[{"doc":"agent-tool-loop","contains":"truncated to 2,000 characters"}]}
+{"id":"q070","query":"What decides where a semantic split should fall?","relevant":[{"doc":"semantic-chunking","contains":"exceeds the 95th percentile"}]}
+{"id":"q071","query":"What are the size bounds on a semantically split chunk?","relevant":[{"doc":"semantic-chunking","contains":"clamped to between 300 and 2,400 characters"}]}
+{"id":"q072","query":"How are the forty candidate pairs sent to the cross-encoder?","relevant":[{"doc":"reranker-latency","contains":"single ONNX Runtime batch of 40"}]}
+{"id":"q073","query":"How large is the connection pool?","relevant":[{"doc":"connection-pooling","contains":"maximumPoolSize = 20"}]}
+{"id":"q074","query":"What goes wrong when a virtual thread blocks on a connection?","relevant":[{"doc":"connection-pooling","contains":"pins its carrier"}]}
+{"id":"q075","query":"How far back can the database be restored?","relevant":[{"doc":"backup-and-restore","contains":"last 14 days"}]}
+{"id":"q076","query":"How long should a full recovery take?","relevant":[{"doc":"backup-and-restore","contains":"recovery time objective is 1 hour"}]}
+{"id":"q077","query":"How long does it take to re-embed the whole corpus?","relevant":[{"doc":"backup-and-restore","contains":"about 40 minutes"}]}
+{"id":"q078","query":"What is the per-user limit on uploading documents?","relevant":[{"doc":"rate-limiting","contains":"10 documents per minute"}]}
+{"id":"q079","query":"Which index type is used for the append-only usage table?","relevant":[{"doc":"token-accounting","contains":"BRIN index on created_at"}]}
+{"id":"q080","query":"How near do two names have to be to be treated as the same entity?","relevant":[{"doc":"entity-graph","contains":"within 0.05 cosine distance"}]}
+{"id":"q081","query":"What is the time budget for expanding the graph during a query?","relevant":[{"doc":"graph-traversal-limits","contains":"budgeted at 20 ms"}]}
+{"id":"q082","query":"How much context is generated per chunk?","relevant":[{"doc":"contextual-retrieval","contains":"capped at 100 tokens"}]}
+{"id":"q083","query":"When is the prompt cache not worth using?","relevant":[{"doc":"prompt-caching","contains":"hit rate below 60 percent"}]}
+{"id":"q084","query":"What is the ceiling on how many tenants this design supports?","relevant":[{"doc":"multi-tenancy-isolation","contains":"tenant count stays below roughly 50"}]}
+{"id":"q085","query":"Which scanned-document pipeline is used and at what resolution?","relevant":[{"doc":"document-parsing-pdf","contains":"Tesseract OCR at 300 DPI"}]}
+{"id":"q086","query":"How is a citation span widened before being shown?","relevant":[{"doc":"citation-grounding","contains":"widened to sentence boundaries"}]}
+{"id":"q087","query":"How does a model row get swapped without a deploy?","relevant":[{"doc":"model-registry","contains":"flipping which row is active"}]}
+{"id":"q088","query":"How long is a chunk allowed to be before the reranker cuts it?","relevant":[{"doc":"reranker-latency","contains":"truncated to 512 tokens"}]}
+{"id":"q089","query":"When does the pool warn about a connection that was never returned?","relevant":[{"doc":"connection-pooling","contains":"leakDetectionThreshold is set to 5"}]}
+{"id":"q090","query":"What is the retention policy for Kafka topics in this system?","relevant":[],"unanswerable":true}
+{"id":"q091","query":"Which Kubernetes operator manages the rollout?","relevant":[],"unanswerable":true}
+{"id":"q092","query":"How are user passwords hashed before storage?","relevant":[],"unanswerable":true}
+{"id":"q093","query":"What is the SLA for the third-party translation service?","relevant":[],"unanswerable":true}
+{"id":"q094","query":"Which A/B testing framework decides feature exposure?","relevant":[],"unanswerable":true}
