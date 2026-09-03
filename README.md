@@ -24,11 +24,11 @@ that open the source at the exact span they name, the same library reached over 
 Claude Code, the two retrieval channels and the ranking that fuses them, and a PDF and a
 web page being ingested.
 
-<!-- PLACEHOLDER: drag-and-drop docs/media/rover-notes-demo.mp4 into this file in the
-     GitHub web editor, then delete this comment and the line below it — GitHub will
-     replace the dropped file with a user-attachments URL that renders as an inline,
-     playable video. -->
-<!-- Paste the GitHub-generated video URL on its own line, here. -->
+
+
+https://github.com/user-attachments/assets/c45aa126-a108-401a-9609-49140fc6efa0
+
+
 
 ---
 
