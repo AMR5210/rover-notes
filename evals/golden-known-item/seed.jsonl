@@ -1,0 +1,117 @@
+{"id": "ki001", "query": "expand_entity", "relevant": [{"doc": "agent-tool-loop", "contains": "expand_entity"}]}
+{"id": "kt001", "query": "agent tool loop", "relevant": [{"doc": "agent-tool-loop", "contains": "The agent loop"}]}
+{"id": "kn001", "query": "agent tol loop", "relevant": [{"doc": "agent-tool-loop", "contains": "The agent loop"}]}
+{"id": "ki002", "query": "OAuth2", "relevant": [{"doc": "auth-supabase-jwt", "contains": "OAuth2"}]}
+{"id": "kt002", "query": "auth supabase jwt", "relevant": [{"doc": "auth-supabase-jwt", "contains": "Authentication"}]}
+{"id": "kn002", "query": "auth spuabase jwt", "relevant": [{"doc": "auth-supabase-jwt", "contains": "Authentication"}]}
+{"id": "ki003", "query": "point-in-time", "relevant": [{"doc": "backup-and-restore", "contains": "point-in-time"}]}
+{"id": "kt003", "query": "backup and restore", "relevant": [{"doc": "backup-and-restore", "contains": "Backup and restore"}]}
+{"id": "kn003", "query": "backup and rsetore", "relevant": [{"doc": "backup-and-restore", "contains": "Backup and restore"}]}
+{"id": "ki004", "query": "boundary-spanning", "relevant": [{"doc": "chunking-strategy", "contains": "boundary-spanning"}]}
+{"id": "kn004", "query": "cuhnking strategy", "relevant": [{"doc": "chunking-strategy", "contains": "Chunking strategy"}]}
+{"id": "ki005", "query": "post-processing", "relevant": [{"doc": "citation-grounding", "contains": "post-processing"}]}
+{"id": "kt004", "query": "citation grounding", "relevant": [{"doc": "citation-grounding", "contains": "Citation grounding"}]}
+{"id": "kn005", "query": "citation gorunding", "relevant": [{"doc": "citation-grounding", "contains": "Citation grounding"}]}
+{"id": "ki006", "query": "max_connections", "relevant": [{"doc": "connection-pooling", "contains": "max_connections"}]}
+{"id": "kt005", "query": "connection pooling", "relevant": [{"doc": "connection-pooling", "contains": "Connection pooling"}]}
+{"id": "kn006", "query": "conection pooling", "relevant": [{"doc": "connection-pooling", "contains": "Connection pooling"}]}
+{"id": "ki007", "query": "claude-haiku-4-5", "relevant": [{"doc": "contextual-retrieval", "contains": "claude-haiku-4-5"}]}
+{"id": "kn007", "query": "cnotextual retrieval", "relevant": [{"doc": "contextual-retrieval", "contains": "Contextual retrieval"}]}
+{"id": "ki008", "query": "A10G", "relevant": [{"doc": "cost-model", "contains": "A10G"}]}
+{"id": "kt006", "query": "cost model", "relevant": [{"doc": "cost-model", "contains": "Cost model"}]}
+{"id": "kn008", "query": "cost mdoel", "relevant": [{"doc": "cost-model", "contains": "Cost model"}]}
+{"id": "ki009", "query": "Terraform-managed", "relevant": [{"doc": "deployment-ecs", "contains": "Terraform-managed"}]}
+{"id": "kt007", "query": "deployment ecs", "relevant": [{"doc": "deployment-ecs", "contains": "Deployment"}]}
+{"id": "kn009", "query": "dpeloyment ecs", "relevant": [{"doc": "deployment-ecs", "contains": "Deployment"}]}
+{"id": "ki010", "query": "append-based", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "append-based"}]}
+{"id": "kt008", "query": "design ingestion pipeline", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "Ingestion pipeline design"}]}
+{"id": "kn010", "query": "design ignestion pipeline", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "Ingestion pipeline design"}]}
+{"id": "ki011", "query": "cross-tenant", "relevant": [{"doc": "design-security-model", "contains": "cross-tenant"}]}
+{"id": "kt009", "query": "design security model", "relevant": [{"doc": "design-security-model", "contains": "Security model"}]}
+{"id": "kn011", "query": "design sceurity model", "relevant": [{"doc": "design-security-model", "contains": "Security model"}]}
+{"id": "ki012", "query": "per-request", "relevant": [{"doc": "design-storage-and-retention", "contains": "per-request"}]}
+{"id": "kt010", "query": "design storage and retention", "relevant": [{"doc": "design-storage-and-retention", "contains": "Storage and retention"}]}
+{"id": "kn012", "query": "design storage and rteention", "relevant": [{"doc": "design-storage-and-retention", "contains": "Storage and retention"}]}
+{"id": "ki013", "query": "pipe-delimited", "relevant": [{"doc": "document-parsing-pdf", "contains": "pipe-delimited"}]}
+{"id": "kt011", "query": "document parsing pdf", "relevant": [{"doc": "document-parsing-pdf", "contains": "PDF parsing"}]}
+{"id": "kn013", "query": "dcoument parsing pdf", "relevant": [{"doc": "document-parsing-pdf", "contains": "PDF parsing"}]}
+{"id": "ki014", "query": "ms-marco-MiniLM-L-6-v2", "relevant": [{"doc": "embedding-models", "contains": "ms-marco-MiniLM-L-6-v2"}]}
+{"id": "kt012", "query": "embedding models", "relevant": [{"doc": "embedding-models", "contains": "Embedding and reranking models"}]}
+{"id": "kn014", "query": "embeding models", "relevant": [{"doc": "embedding-models", "contains": "Embedding and reranking models"}]}
+{"id": "ki015", "query": "near-duplicates", "relevant": [{"doc": "entity-graph", "contains": "near-duplicates"}]}
+{"id": "kt013", "query": "entity graph", "relevant": [{"doc": "entity-graph", "contains": "The entity graph"}]}
+{"id": "kn015", "query": "etnity graph", "relevant": [{"doc": "entity-graph", "contains": "The entity graph"}]}
+{"id": "ki016", "query": "known-relevant", "relevant": [{"doc": "eval-methodology", "contains": "known-relevant"}]}
+{"id": "kt014", "query": "eval methodology", "relevant": [{"doc": "eval-methodology", "contains": "Evaluation methodology"}]}
+{"id": "kn016", "query": "eval mtehodology", "relevant": [{"doc": "eval-methodology", "contains": "Evaluation methodology"}]}
+{"id": "ki017", "query": "shortest-path", "relevant": [{"doc": "graph-traversal-limits", "contains": "shortest-path"}]}
+{"id": "kt015", "query": "graph traversal limits", "relevant": [{"doc": "graph-traversal-limits", "contains": "Graph traversal limits"}]}
+{"id": "kn017", "query": "graph tarversal limits", "relevant": [{"doc": "graph-traversal-limits", "contains": "Graph traversal limits"}]}
+{"id": "kt016", "query": "guide api reference", "relevant": [{"doc": "guide-api-reference", "contains": "API reference"}]}
+{"id": "kn018", "query": "guide api rfeerence", "relevant": [{"doc": "guide-api-reference", "contains": "API reference"}]}
+{"id": "kt017", "query": "guide local development", "relevant": [{"doc": "guide-local-development", "contains": "Local development guide"}]}
+{"id": "kn019", "query": "guide local dveelopment", "relevant": [{"doc": "guide-local-development", "contains": "Local development guide"}]}
+{"id": "ki018", "query": "th-percentile", "relevant": [{"doc": "guide-performance-tuning", "contains": "th-percentile"}]}
+{"id": "kt018", "query": "guide performance tuning", "relevant": [{"doc": "guide-performance-tuning", "contains": "Performance tuning guide"}]}
+{"id": "kn020", "query": "guide preformance tuning", "relevant": [{"doc": "guide-performance-tuning", "contains": "Performance tuning guide"}]}
+{"id": "ki019", "query": "maintenance_work_mem", "relevant": [{"doc": "hnsw-index-tuning", "contains": "maintenance_work_mem"}]}
+{"id": "kt019", "query": "hnsw index tuning", "relevant": [{"doc": "hnsw-index-tuning", "contains": "HNSW index tuning"}]}
+{"id": "kn021", "query": "hnsw index tnuing", "relevant": [{"doc": "hnsw-index-tuning", "contains": "HNSW index tuning"}]}
+{"id": "ki020", "query": "ts_rank_cd", "relevant": [{"doc": "hybrid-retrieval", "contains": "ts_rank_cd"}]}
+{"id": "kt020", "query": "hybrid retrieval", "relevant": [{"doc": "hybrid-retrieval", "contains": "Hybrid retrieval"}]}
+{"id": "kn022", "query": "hybrid rterieval", "relevant": [{"doc": "hybrid-retrieval", "contains": "Hybrid retrieval"}]}
+{"id": "ki021", "query": "list_documents", "relevant": [{"doc": "mcp-server", "contains": "list_documents"}]}
+{"id": "kt021", "query": "mcp server", "relevant": [{"doc": "mcp-server", "contains": "The MCP server"}]}
+{"id": "kn023", "query": "mcp srever", "relevant": [{"doc": "mcp-server", "contains": "The MCP server"}]}
+{"id": "kt022", "query": "model registry", "relevant": [{"doc": "model-registry", "contains": "Model registry"}]}
+{"id": "kn024", "query": "model rgeistry", "relevant": [{"doc": "model-registry", "contains": "Model registry"}]}
+{"id": "ki022", "query": "ModularityTests", "relevant": [{"doc": "modular-monolith", "contains": "ModularityTests"}]}
+{"id": "kn025", "query": "modular mnoolith", "relevant": [{"doc": "modular-monolith", "contains": "The modular monolith"}]}
+{"id": "ki023", "query": "hnsw.iterative_scan", "relevant": [{"doc": "multi-tenancy-isolation", "contains": "hnsw.iterative_scan"}]}
+{"id": "kt023", "query": "multi tenancy isolation", "relevant": [{"doc": "multi-tenancy-isolation", "contains": "Multi-tenant isolation"}]}
+{"id": "kn026", "query": "multi tenancy ioslation", "relevant": [{"doc": "multi-tenancy-isolation", "contains": "Multi-tenant isolation"}]}
+{"id": "ki024", "query": "OpenTelemetry", "relevant": [{"doc": "observability-tracing", "contains": "OpenTelemetry"}]}
+{"id": "kt024", "query": "observability tracing", "relevant": [{"doc": "observability-tracing", "contains": "Tracing and metrics"}]}
+{"id": "kn027", "query": "osbervability tracing", "relevant": [{"doc": "observability-tracing", "contains": "Tracing and metrics"}]}
+{"id": "ki025", "query": "event_publication", "relevant": [{"doc": "outbox-pattern", "contains": "event_publication"}]}
+{"id": "kt025", "query": "outbox pattern", "relevant": [{"doc": "outbox-pattern", "contains": "The transactional outbox"}]}
+{"id": "kn028", "query": "outbox patern", "relevant": [{"doc": "outbox-pattern", "contains": "The transactional outbox"}]}
+{"id": "ki026", "query": "vector_cosine_ops", "relevant": [{"doc": "pgvector-operators", "contains": "vector_cosine_ops"}]}
+{"id": "kt026", "query": "pgvector operators", "relevant": [{"doc": "pgvector-operators", "contains": "pgvector distance operators"}]}
+{"id": "kn029", "query": "pgvector oeprators", "relevant": [{"doc": "pgvector-operators", "contains": "pgvector distance operators"}]}
+{"id": "ki027", "query": "change-data-capture", "relevant": [{"doc": "postgres-job-queue", "contains": "change-data-capture"}]}
+{"id": "kt027", "query": "postgres job queue", "relevant": [{"doc": "postgres-job-queue", "contains": "The job queue"}]}
+{"id": "kn030", "query": "psotgres job queue", "relevant": [{"doc": "postgres-job-queue", "contains": "The job queue"}]}
+{"id": "ki028", "query": "cache_control", "relevant": [{"doc": "prompt-caching", "contains": "cache_control"}]}
+{"id": "kn031", "query": "prompt ccahing", "relevant": [{"doc": "prompt-caching", "contains": "Prompt caching"}]}
+{"id": "ki029", "query": "never-wrong", "relevant": [{"doc": "query-routing", "contains": "never-wrong"}]}
+{"id": "kt028", "query": "query routing", "relevant": [{"doc": "query-routing", "contains": "Query routing"}]}
+{"id": "kn032", "query": "query ruoting", "relevant": [{"doc": "query-routing", "contains": "Query routing"}]}
+{"id": "ki030", "query": "Retry-After", "relevant": [{"doc": "rate-limiting", "contains": "Retry-After"}]}
+{"id": "kt029", "query": "rate limiting", "relevant": [{"doc": "rate-limiting", "contains": "Rate limiting"}]}
+{"id": "kn033", "query": "rate lmiiting", "relevant": [{"doc": "rate-limiting", "contains": "Rate limiting"}]}
+{"id": "ki031", "query": "per-call", "relevant": [{"doc": "reranker-latency", "contains": "per-call"}]}
+{"id": "kt030", "query": "reranker latency", "relevant": [{"doc": "reranker-latency", "contains": "Reranker latency budget"}]}
+{"id": "kn034", "query": "rreanker latency", "relevant": [{"doc": "reranker-latency", "contains": "Reranker latency budget"}]}
+{"id": "ki032", "query": "single-instance", "relevant": [{"doc": "runbook-capacity-planning", "contains": "single-instance"}]}
+{"id": "kt031", "query": "runbook capacity planning", "relevant": [{"doc": "runbook-capacity-planning", "contains": "Capacity planning"}]}
+{"id": "kn035", "query": "runbok capacity planning", "relevant": [{"doc": "runbook-capacity-planning", "contains": "Capacity planning"}]}
+{"id": "ki033", "query": "single-threaded", "relevant": [{"doc": "runbook-database-operations", "contains": "single-threaded"}]}
+{"id": "kt032", "query": "runbook database operations", "relevant": [{"doc": "runbook-database-operations", "contains": "Database operations runbook"}]}
+{"id": "kn036", "query": "runbok database operations", "relevant": [{"doc": "runbook-database-operations", "contains": "Database operations runbook"}]}
+{"id": "ki034", "query": "SEV3", "relevant": [{"doc": "runbook-incident-response", "contains": "SEV3"}]}
+{"id": "kt033", "query": "runbook incident response", "relevant": [{"doc": "runbook-incident-response", "contains": "Incident response runbook"}]}
+{"id": "kn037", "query": "runbok incident response", "relevant": [{"doc": "runbook-incident-response", "contains": "Incident response runbook"}]}
+{"id": "ki035", "query": "Cross-encoders", "relevant": [{"doc": "runbook-model-upgrades", "contains": "Cross-encoders"}]}
+{"id": "kt034", "query": "runbook model upgrades", "relevant": [{"doc": "runbook-model-upgrades", "contains": "Model upgrade runbook"}]}
+{"id": "kn038", "query": "runbok model upgrades", "relevant": [{"doc": "runbook-model-upgrades", "contains": "Model upgrade runbook"}]}
+{"id": "kn039", "query": "semantic cuhnking", "relevant": [{"doc": "semantic-chunking", "contains": "Semantic chunking"}]}
+{"id": "ki036", "query": "ApplicationModuleListener", "relevant": [{"doc": "spring-modulith-events", "contains": "ApplicationModuleListener"}]}
+{"id": "kt035", "query": "spring modulith events", "relevant": [{"doc": "spring-modulith-events", "contains": "Application events between modules"}]}
+{"id": "kn040", "query": "spring mdoulith events", "relevant": [{"doc": "spring-modulith-events", "contains": "Application events between modules"}]}
+{"id": "ki037", "query": "server-to-client", "relevant": [{"doc": "sse-streaming", "contains": "server-to-client"}]}
+{"id": "kt036", "query": "sse streaming", "relevant": [{"doc": "sse-streaming", "contains": "Streaming responses"}]}
+{"id": "kn041", "query": "se streaming", "relevant": [{"doc": "sse-streaming", "contains": "Streaming responses"}]}
+{"id": "ki038", "query": "created_at", "relevant": [{"doc": "token-accounting", "contains": "created_at"}]}
+{"id": "kt037", "query": "token accounting", "relevant": [{"doc": "token-accounting", "contains": "Token accounting"}]}
+{"id": "kn042", "query": "token acounting", "relevant": [{"doc": "token-accounting", "contains": "Token accounting"}]}

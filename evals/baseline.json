@@ -1,0 +1,1175 @@
+{
+  "timestamp": "2026-08-09T09:15:05.358471+00:00",
+  "mode": "default",
+  "rerank": "default",
+  "route": "default",
+  "relevance": "passage",
+  "queries_scored": 128,
+  "queries_unanswerable": 8,
+  "metrics": {
+    "ndcg@10": 0.8254,
+    "recall@5": 0.9297,
+    "recall@20": 1.0,
+    "mrr": 0.7851
+  },
+  "latency_ms": {
+    "mean": 19.3,
+    "p95": 31.9
+  },
+  "unanswerable_mean_hits": 20.0,
+  "per_query": [
+    {
+      "id": "L001",
+      "query": "When does a degraded service page someone immediately?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L002",
+      "query": "How do I tell the application being down from a dependency being down?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L003",
+      "query": "What does connection pool exhaustion look like from outside?",
+      "ndcg@10": 0.4307,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.25,
+      "hits": 1
+    },
+    {
+      "id": "L004",
+      "query": "Why is rolling back a schema harder than rolling back code?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L005",
+      "query": "What should a write-up after an outage start with?",
+      "ndcg@10": 0.511,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "L006",
+      "query": "How is an index added to a table that already holds rows?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L007",
+      "query": "How do I know autovacuum is falling behind?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L008",
+      "query": "How does a vector index get worse over time?",
+      "ndcg@10": 0.6131,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "L009",
+      "query": "Why is the replica not used to serve reads?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L010",
+      "query": "How is a backup known to be good?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L011",
+      "query": "Why does the first container start take so long?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L012",
+      "query": "Why does searching right after writing a note return nothing?",
+      "ndcg@10": 0.8503,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "L013",
+      "query": "The app starts and exits immediately \u2014 what is that?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L014",
+      "query": "Every search result has the same score. What broke?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L015",
+      "query": "What happens to the old pieces when a document is edited?",
+      "ndcg@10": 0.3155,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.125,
+      "hits": 1
+    },
+    {
+      "id": "L016",
+      "query": "What does the service return when someone exceeds their limit?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "L017",
+      "query": "Why does a reranker outage not produce an error?",
+      "ndcg@10": 0.3333,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.1429,
+      "hits": 1
+    },
+    {
+      "id": "L018",
+      "query": "Is deleting a note reversible?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L019",
+      "query": "Why is the indexing event written inside the write transaction?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L020",
+      "query": "What stops a repeated event from doubling the stored pieces?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L021",
+      "query": "Why is ranking tied to a hash of the text?",
+      "ndcg@10": 0.0,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.0833,
+      "hits": 1
+    },
+    {
+      "id": "L022",
+      "query": "What happens to a document that fails every attempt?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "L023",
+      "query": "Where is the per-owner filter actually applied?",
+      "ndcg@10": 0.4307,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.25,
+      "hits": 1
+    },
+    {
+      "id": "L024",
+      "query": "What is deliberately kept out of the logs?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L025",
+      "query": "Why is careful prompting not the answer to injection?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "L026",
+      "query": "How are the signing keys refreshed?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "L027",
+      "query": "Why is the latency target set where it is?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L028",
+      "query": "Does a bigger connection pool give more throughput?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L029",
+      "query": "Which vector index setting can be changed without a rebuild?",
+      "ndcg@10": 0.2184,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.1667,
+      "hits": 2
+    },
+    {
+      "id": "L030",
+      "query": "Why is nothing cached yet?",
+      "ndcg@10": 0.2641,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.25,
+      "hits": 2
+    },
+    {
+      "id": "L031",
+      "query": "Why is swapping the embedding model not just a config change?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L032",
+      "query": "How is a candidate embedding model chosen?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "L033",
+      "query": "Why add a second vector column instead of replacing the first?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "L034",
+      "query": "Why is changing the reranking model easier?",
+      "ndcg@10": 0.6934,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 2
+    },
+    {
+      "id": "L035",
+      "query": "What can be rebuilt and what cannot?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "L036",
+      "query": "Why are stored objects named by their contents?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L037",
+      "query": "How long is a deleted upload kept?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L038",
+      "query": "What happens to per-request spend records over time?",
+      "ndcg@10": 0.8175,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "L039",
+      "query": "What limits how far one database instance goes?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "L040",
+      "query": "What saturates first when reranking is switched on?",
+      "ndcg@10": 0.3869,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.2,
+      "hits": 1
+    },
+    {
+      "id": "L041",
+      "query": "What bounds how fast documents can be ingested?",
+      "ndcg@10": 0.301,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.1111,
+      "hits": 1
+    },
+    {
+      "id": "L042",
+      "query": "What dominates the infrastructure bill at this size?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q001",
+      "query": "How are the two ranked lists combined into one?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q002",
+      "query": "Why not just normalise the scores before merging them?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q003",
+      "query": "What value is used for the RRF constant and where does it come from?",
+      "ndcg@10": 0.0,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.0909,
+      "hits": 1
+    },
+    {
+      "id": "q004",
+      "query": "Why keep a keyword search channel when we have embeddings?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q005",
+      "query": "bge-small-en-v1.5",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q006",
+      "query": "ms-marco-MiniLM-L-6-v2",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q007",
+      "query": "How long does reranking take on CPU?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q008",
+      "query": "What is the difference between a bi-encoder and a cross-encoder?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q009",
+      "query": "Why is reranking applied to only 40 candidates?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q010",
+      "query": "How big are the chunks and how much do they overlap?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q011",
+      "query": "Why do chunks overlap at all?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q012",
+      "query": "How can an answer point at the exact sentence it used?",
+      "ndcg@10": 0.3869,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.2,
+      "hits": 1
+    },
+    {
+      "id": "q013",
+      "query": "SKIP LOCKED",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q014",
+      "query": "Why was Kafka not used for the ingestion pipeline?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q015",
+      "query": "How do we avoid losing an indexing job if the process restarts?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q016",
+      "query": "At what throughput would the job queue need replacing?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q017",
+      "query": "What tools does the MCP server expose?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q018",
+      "query": "Why return snippets instead of whole documents to an agent?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q019",
+      "query": "Which metric is the headline number for retrieval quality?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q020",
+      "query": "Why is relevance not recorded against chunk IDs?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q021",
+      "query": "Why include questions the notes cannot answer?",
+      "ndcg@10": 0.3155,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.125,
+      "hits": 1
+    },
+    {
+      "id": "q022",
+      "query": "When does CI fail on retrieval quality?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q023",
+      "query": "Why is Kubernetes not used?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q024",
+      "query": "How many separately deployed pieces are there?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q025",
+      "query": "Is it cheaper to run our own GPU than to call the API?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q026",
+      "query": "Which model grades the evaluation?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q027",
+      "query": "How much does prompt caching save on contextual retrieval?",
+      "ndcg@10": 0.3155,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.125,
+      "hits": 1
+    },
+    {
+      "id": "q031",
+      "query": "Why was HNSW chosen instead of IVFFlat for the vector index?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q032",
+      "query": "How much memory do the graph links add at three hundred thousand vectors?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q033",
+      "query": "How do you rebuild the vector index without taking search offline?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q034",
+      "query": "Which operator class does the embedding index use?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q035",
+      "query": "How is a distance turned back into a similarity score?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q036",
+      "query": "How does the system decide whether a question needs retrieval at all?",
+      "ndcg@10": 0.4307,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.25,
+      "hits": 1
+    },
+    {
+      "id": "q037",
+      "query": "How long are routing decisions cached?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q038",
+      "query": "What is prepended to a chunk before it gets embedded?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q039",
+      "query": "How much did adding chunk context reduce retrieval failures?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q040",
+      "query": "How long does a cached prompt prefix stay warm?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q041",
+      "query": "What is the minimum number of tokens Sonnet will cache?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q042",
+      "query": "What format do the inline source references use?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q043",
+      "query": "What happens when an answer cites something that cannot be resolved?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q044",
+      "query": "Which table records an event before it is delivered?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q045",
+      "query": "How long are completed event rows kept?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q046",
+      "query": "How many modules does the application have?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q047",
+      "query": "What stops one module reaching into another module's internals?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q048",
+      "query": "Which annotation marks a listener that runs after the transaction commits?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q049",
+      "query": "Why do event payloads carry identifiers instead of whole objects?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q050",
+      "query": "Which claim from the token becomes the owner identifier?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q051",
+      "query": "How long are the signing keys cached before refetching?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q052",
+      "query": "What setting keeps a filtered vector search from returning too few rows?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q053",
+      "query": "Why has row-level security not been turned on?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q054",
+      "query": "Which header propagates a trace across service boundaries?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q055",
+      "query": "What fraction of requests are traced?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q056",
+      "query": "Why are floating model tags avoided?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q057",
+      "query": "How is spend per request stored without floating point drift?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q058",
+      "query": "When do per-request usage rows get rolled up?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q059",
+      "query": "What is the request quota per user per minute?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q060",
+      "query": "Where is the rate limiter's state kept?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q061",
+      "query": "Which library pulls the text out of a PDF?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q062",
+      "query": "What is the largest document that can be uploaded?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q063",
+      "query": "What kinds of things are extracted as entities?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q064",
+      "query": "How many neighbours can one node expand to?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q065",
+      "query": "What stops graph expansion revisiting the same node?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q066",
+      "query": "How does a dropped stream resume where it left off?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q067",
+      "query": "What keeps an idle stream connection from being closed?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q068",
+      "query": "How many times will the agent loop before giving up?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q069",
+      "query": "How is a tool result shortened before going back to the model?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q070",
+      "query": "What decides where a semantic split should fall?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q071",
+      "query": "What are the size bounds on a semantically split chunk?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q072",
+      "query": "How are the forty candidate pairs sent to the cross-encoder?",
+      "ndcg@10": 0.3155,
+      "recall@5": 0.0,
+      "recall@20": 1.0,
+      "rr": 0.125,
+      "hits": 1
+    },
+    {
+      "id": "q073",
+      "query": "How large is the connection pool?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q074",
+      "query": "What goes wrong when a virtual thread blocks on a connection?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q075",
+      "query": "How far back can the database be restored?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q076",
+      "query": "How long should a full recovery take?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q077",
+      "query": "How long does it take to re-embed the whole corpus?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q078",
+      "query": "What is the per-user limit on uploading documents?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q079",
+      "query": "Which index type is used for the append-only usage table?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q080",
+      "query": "How near do two names have to be to be treated as the same entity?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q081",
+      "query": "What is the time budget for expanding the graph during a query?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q082",
+      "query": "How much context is generated per chunk?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q083",
+      "query": "When is the prompt cache not worth using?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q084",
+      "query": "What is the ceiling on how many tenants this design supports?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q085",
+      "query": "Which scanned-document pipeline is used and at what resolution?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    },
+    {
+      "id": "q086",
+      "query": "How is a citation span widened before being shown?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q087",
+      "query": "How does a model row get swapped without a deploy?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "q088",
+      "query": "How long is a chunk allowed to be before the reranker cuts it?",
+      "ndcg@10": 0.5,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 1
+    },
+    {
+      "id": "q089",
+      "query": "When does the pool warn about a connection that was never returned?",
+      "ndcg@10": 0.6309,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 1
+    }
+  ],
+  "golden": "golden"
+}

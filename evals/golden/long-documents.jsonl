@@ -1,0 +1,42 @@
+{"id": "L001", "query": "When does a degraded service page someone immediately?", "relevant": [{"doc": "runbook-incident-response", "contains": "SEV1 is the API returning errors"}]}
+{"id": "L002", "query": "How do I tell the application being down from a dependency being down?", "relevant": [{"doc": "runbook-incident-response", "contains": "state of each downstream dependency separately"}]}
+{"id": "L003", "query": "What does connection pool exhaustion look like from outside?", "relevant": [{"doc": "runbook-incident-response", "contains": "latency cliff rather than errors"}]}
+{"id": "L004", "query": "Why is rolling back a schema harder than rolling back code?", "relevant": [{"doc": "runbook-incident-response", "contains": "migrations are forward-only"}]}
+{"id": "L005", "query": "What should a write-up after an outage start with?", "relevant": [{"doc": "runbook-incident-response", "contains": "Write the timeline before the analysis"}]}
+{"id": "L006", "query": "How is an index added to a table that already holds rows?", "relevant": [{"doc": "runbook-database-operations", "contains": "created concurrently"}]}
+{"id": "L007", "query": "How do I know autovacuum is falling behind?", "relevant": [{"doc": "runbook-database-operations", "contains": "dead tuples as a fraction of live ones"}]}
+{"id": "L008", "query": "How does a vector index get worse over time?", "relevant": [{"doc": "runbook-database-operations", "contains": "recall falls quietly as deletions accumulate"}]}
+{"id": "L009", "query": "Why is the replica not used to serve reads?", "relevant": [{"doc": "runbook-database-operations", "contains": "replication lag in the retrieval path"}]}
+{"id": "L010", "query": "How is a backup known to be good?", "relevant": [{"doc": "runbook-database-operations", "contains": "backup that has never been restored is a hypothesis"}]}
+{"id": "L011", "query": "Why does the first container start take so long?", "relevant": [{"doc": "guide-local-development", "contains": "retry for several"}]}
+{"id": "L012", "query": "Why does searching right after writing a note return nothing?", "relevant": [{"doc": "guide-local-development", "contains": "Indexing is asynchronous"}]}
+{"id": "L013", "query": "The app starts and exits immediately \u2014 what is that?", "relevant": [{"doc": "guide-local-development", "contains": "migration file was edited after being applied"}]}
+{"id": "L014", "query": "Every search result has the same score. What broke?", "relevant": [{"doc": "guide-local-development", "contains": "failed to load weights and is returning a constant"}]}
+{"id": "L015", "query": "What happens to the old pieces when a document is edited?", "relevant": [{"doc": "guide-api-reference", "contains": "never sees a mixture of two versions"}]}
+{"id": "L016", "query": "What does the service return when someone exceeds their limit?", "relevant": [{"doc": "guide-api-reference", "contains": "retry hint in seconds rather than an absolute timestamp"}]}
+{"id": "L017", "query": "Why does a reranker outage not produce an error?", "relevant": [{"doc": "guide-api-reference", "contains": "fused ranking is served instead"}]}
+{"id": "L018", "query": "Is deleting a note reversible?", "relevant": [{"doc": "guide-api-reference", "contains": "Deletion is immediate rather than soft"}]}
+{"id": "L019", "query": "Why is the indexing event written inside the write transaction?", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "crash between commit and send"}]}
+{"id": "L020", "query": "What stops a repeated event from doubling the stored pieces?", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "replace rather than an append"}]}
+{"id": "L021", "query": "Why is ranking tied to a hash of the text?", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "tie broken on a generated identifier reorders"}]}
+{"id": "L022", "query": "What happens to a document that fails every attempt?", "relevant": [{"doc": "design-ingestion-pipeline", "contains": "marked failed and left for inspection"}]}
+{"id": "L023", "query": "Where is the per-owner filter actually applied?", "relevant": [{"doc": "design-security-model", "contains": "in the query rather than in a service layer"}]}
+{"id": "L024", "query": "What is deliberately kept out of the logs?", "relevant": [{"doc": "design-security-model", "contains": "Never a query string, never a document body"}]}
+{"id": "L025", "query": "Why is careful prompting not the answer to injection?", "relevant": [{"doc": "design-security-model", "contains": "no tools that act on the world"}]}
+{"id": "L026", "query": "How are the signing keys refreshed?", "relevant": [{"doc": "design-security-model", "contains": "refetching on an unknown key identifier"}]}
+{"id": "L027", "query": "Why is the latency target set where it is?", "relevant": [{"doc": "guide-performance-tuning", "contains": "stops being noticed against the several seconds"}]}
+{"id": "L028", "query": "Does a bigger connection pool give more throughput?", "relevant": [{"doc": "guide-performance-tuning", "contains": "queue in the application into a queue in the database"}]}
+{"id": "L029", "query": "Which vector index setting can be changed without a rebuild?", "relevant": [{"doc": "guide-performance-tuning", "contains": "many candidates a search keeps in flight"}]}
+{"id": "L030", "query": "Why is nothing cached yet?", "relevant": [{"doc": "guide-performance-tuning", "contains": "repeat rate of queries within an hour"}]}
+{"id": "L031", "query": "Why is swapping the embedding model not just a config change?", "relevant": [{"doc": "runbook-model-upgrades", "contains": "Vectors from two different models are not comparable"}]}
+{"id": "L032", "query": "How is a candidate embedding model chosen?", "relevant": [{"doc": "runbook-model-upgrades", "contains": "index a copy of the corpus with the candidate"}]}
+{"id": "L033", "query": "Why add a second vector column instead of replacing the first?", "relevant": [{"doc": "runbook-model-upgrades", "contains": "reversible without a restore"}]}
+{"id": "L034", "query": "Why is changing the reranking model easier?", "relevant": [{"doc": "runbook-model-upgrades", "contains": "rerank model reads a query and a passage"}]}
+{"id": "L035", "query": "What can be rebuilt and what cannot?", "relevant": [{"doc": "design-storage-and-retention", "contains": "rebuilt from the original by rerunning the pipeline"}]}
+{"id": "L036", "query": "Why are stored objects named by their contents?", "relevant": [{"doc": "design-storage-and-retention", "contains": "Two users uploading the same file store one object"}]}
+{"id": "L037", "query": "How long is a deleted upload kept?", "relevant": [{"doc": "design-storage-and-retention", "contains": "thirty days after the last reference"}]}
+{"id": "L038", "query": "What happens to per-request spend records over time?", "relevant": [{"doc": "design-storage-and-retention", "contains": "aggregated to a daily figure per owner"}]}
+{"id": "L039", "query": "What limits how far one database instance goes?", "relevant": [{"doc": "runbook-capacity-planning", "contains": "performs well while it fits in memory"}]}
+{"id": "L040", "query": "What saturates first when reranking is switched on?", "relevant": [{"doc": "runbook-capacity-planning", "contains": "model server saturates first"}]}
+{"id": "L041", "query": "What bounds how fast documents can be ingested?", "relevant": [{"doc": "runbook-capacity-planning", "contains": "Bounded by embedding, not by writes"}]}
+{"id": "L042", "query": "What dominates the infrastructure bill at this size?", "relevant": [{"doc": "runbook-capacity-planning", "contains": "keeping containers running"}]}

@@ -1,0 +1,347 @@
+{
+  "timestamp": "2026-08-16T19:53:34.420515+00:00",
+  "mode": "default",
+  "rerank": "default",
+  "route": "default",
+  "relevance": "passage",
+  "queries_scored": 36,
+  "queries_unanswerable": 0,
+  "metrics": {
+    "ndcg@10": 0.7915,
+    "recall@5": 0.7778,
+    "recall@20": 0.9583,
+    "mrr": 0.812
+  },
+  "latency_ms": {
+    "mean": 22.8,
+    "p95": 33.2
+  },
+  "unanswerable_mean_hits": 0.0,
+  "per_query": [
+    {
+      "id": "M001",
+      "query": "How many candidate pairs does the cross-encoder score, and what makes that the limit?",
+      "ndcg@10": 0.8175,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M002",
+      "query": "Is the source document sent during chunk annotation long enough for the provider to cache it?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M003",
+      "query": "Of the two settings that govern the vector graph index, which one can be changed without a rebuild, and what is it called?",
+      "ndcg@10": 0.6979,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 3
+    },
+    {
+      "id": "M004",
+      "query": "Why can a filtered vector search return fewer rows than the limit asked for, and why would raising the search parameter change nothing on a small table?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M005",
+      "query": "After a restore, what has to be rebuilt before search works again, and why is it not carried in the backup?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M006",
+      "query": "A note typed straight into the app rather than uploaded \u2014 what makes its backup requirement different from an uploaded file's?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M007",
+      "query": "What guarantees a document cannot exist without its indexing work, and how does a worker take that work up?",
+      "ndcg@10": 0.5641,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 0.5,
+      "hits": 2
+    },
+    {
+      "id": "M008",
+      "query": "How many times does a failed listener retry, and what picks it up afterwards?",
+      "ndcg@10": 0.5706,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "M009",
+      "query": "Which model grades the evaluation, and why is it not configured as an alias?",
+      "ndcg@10": 0.4685,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 0.25,
+      "hits": 2
+    },
+    {
+      "id": "M010",
+      "query": "The system is described as four deployables in one place and six modules in another. How do those two counts fit together?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M011",
+      "query": "What does a citation need recorded at chunking time, and what does a PDF add to it?",
+      "ndcg@10": 0.525,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "M012",
+      "query": "What does the API return when a limit is exceeded, and is the answer the same when the limit is model spend rather than request count?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M013",
+      "query": "A replacement embedding model produces a different number of dimensions. What has to change in the schema, and how is the switch made reversible?",
+      "ndcg@10": 0.8066,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M014",
+      "query": "How fast does a backfill onto a new vector column run, and what is the bottleneck?",
+      "ndcg@10": 0.7904,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M015",
+      "query": "Why is the pre-model latency target set where it is, and how much of it does the committed baseline actually use?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M016",
+      "query": "Is the latency figure on its own the reason reranking is off by default?",
+      "ndcg@10": 0.8316,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M017",
+      "query": "Which stage degrades rather than failing the request, and what does the caller get instead?",
+      "ndcg@10": 0.5438,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "M018",
+      "query": "A cache hit rate under 60 percent \u2014 what does it usually mean, and which counters would show it?",
+      "ndcg@10": 0.7977,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M019",
+      "query": "How long are per-request spend rows kept, and what is left once they go?",
+      "ndcg@10": 0.9675,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 3
+    },
+    {
+      "id": "M020",
+      "query": "How much does classifying a query cost against the budget for everything before the model call?",
+      "ndcg@10": 0.2372,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 0.2,
+      "hits": 2
+    },
+    {
+      "id": "M021",
+      "query": "Which kind of query carries most of the reciprocal rank loss, and what does that metric actually measure?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M022",
+      "query": "What stops a retrieval regression reaching production, and how large does it have to be to count?",
+      "ndcg@10": 0.2372,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 0.2,
+      "hits": 2
+    },
+    {
+      "id": "M023",
+      "query": "Which channel finds a lookup by identifier, and what does the classifier do for one?",
+      "ndcg@10": 0.5706,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 0.3333,
+      "hits": 2
+    },
+    {
+      "id": "M024",
+      "query": "The agent can expand a result set along relationships. Over what, and how far?",
+      "ndcg@10": 0.9197,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M025",
+      "query": "Which tools does the agent hold, and what stops a retrieved passage from making one act on the world?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M026",
+      "query": "Why is the owner column a plain UUID rather than a foreign key, and where is the filter that uses it applied?",
+      "ndcg@10": 0.8772,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M027",
+      "query": "What would enforcing the ownership check inside the database cost, and what would make it worth paying?",
+      "ndcg@10": 0.8316,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M028",
+      "query": "A streamed answer holds a request thread for its whole life. Why is that affordable, and what stops one draining the connection pool?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M029",
+      "query": "What goes wrong if the client's batch size is set equal to what the model server accepts?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M030",
+      "query": "Indexing runs twice for the same document. What stops the chunks doubling, and what keeps the ranking stable across the repeat?",
+      "ndcg@10": 0.4307,
+      "recall@5": 0.5,
+      "recall@20": 0.5,
+      "rr": 0.25,
+      "hits": 1
+    },
+    {
+      "id": "M031",
+      "query": "The development profile skips token validation. What stops that configuration starting anywhere real?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M032",
+      "query": "When is the full rebuild path exercised outside a disaster, and what else does that same change affect?",
+      "ndcg@10": 1.0,
+      "recall@5": 0.5,
+      "recall@20": 0.5,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "M033",
+      "query": "Semantic chunking costs roughly thirty times the embedding work. What decides whether it is kept?",
+      "ndcg@10": 1.0,
+      "recall@5": 0.5,
+      "recall@20": 0.5,
+      "rr": 1.0,
+      "hits": 1
+    },
+    {
+      "id": "M034",
+      "query": "A half-finished embedding migration answers queries without erroring. What makes that dangerous, and which check catches it?",
+      "ndcg@10": 0.6131,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    },
+    {
+      "id": "M035",
+      "query": "What makes chunk annotation the first ingest stage whose cost is money rather than milliseconds, and what keeps it affordable?",
+      "ndcg@10": 1.0,
+      "recall@5": 1.0,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 4
+    },
+    {
+      "id": "M036",
+      "query": "Which models are self-hosted, and why is that the opposite decision from the one made for synthesis?",
+      "ndcg@10": 0.7977,
+      "recall@5": 0.5,
+      "recall@20": 1.0,
+      "rr": 1.0,
+      "hits": 2
+    }
+  ],
+  "golden": "golden-multihop"
+}

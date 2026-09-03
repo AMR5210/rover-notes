@@ -1,0 +1,417 @@
+spring:
+  application:
+    name: rover-notes-api
+
+  # This workload is almost entirely I/O wait — Postgres, embedding service, LLM APIs.
+  # Virtual threads give high concurrency on blocking code without reactive types.
+  threads:
+    virtual:
+      enabled: true
+
+  servlet:
+    multipart:
+      # Matched to the parsing service's own bound (rover.max_upload_bytes, 25 MB). The
+      # two are separate limits on the same upload, and Boot's default is 1 MB — so
+      # without this the container refuses files the parser was configured to accept,
+      # and it refuses them with a container error rather than the endpoint's own.
+      max-file-size: 25MB
+      # Above max-file-size, since the request carries the file plus its part headers
+      # and any other fields. Equal values reject a legal file for the size of its
+      # envelope.
+      max-request-size: 30MB
+
+  datasource:
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost:5432/rover}
+    username: ${POSTGRES_USER:rover}
+    password: ${POSTGRES_PASSWORD:rover}
+    hikari:
+      maximum-pool-size: 16
+      pool-name: rover-pool
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true
+
+  # SMTP transport settings. The host, port and credentials come from the environment
+  # (see .env.example); this is the part that has to be the same everywhere.
+  #
+  # STARTTLS is not on by default — confirmed against Boot's own configuration metadata,
+  # where `spring.mail.properties` has no default and `spring.mail.ssl.enabled` is false.
+  # Without it a submission on port 587 stays in the clear, and essentially every provider
+  # refuses to authenticate over an unencrypted channel, so the first reset link anybody
+  # needed would fail with "must issue a STARTTLS command first".
+  #
+  # `enable` rather than `required`: it upgrades the connection wherever the server offers
+  # it, and still works against a local catcher that does not. A deployment facing a real
+  # provider should add `mail.smtp.starttls.required: true` as well, which turns a server
+  # that silently declines to encrypt into a failure rather than a plaintext send.
+  mail:
+    properties:
+      mail.smtp.starttls.enable: true
+
+  # No resourceserver.jwt configuration here. This service issues the tokens it
+  # validates (docs/ARCHITECTURE.md), so the JwtDecoder is built in AuthorizationServerConfig from
+  # the same key source that signs them. Pointing it at an issuer URI instead would mean
+  # the application fetching its own JWKS over HTTP at startup.
+
+  ai:
+    mcp:
+      server:
+        name: rover-notes
+        version: 0.1.0
+        # Streamable HTTP, not the deprecated SSE transport. STDIO cannot serve a
+        # deployed process, and this server is reachable by any agent that can reach
+        # the API — the tools are scoped to the caller's owner, not to the transport.
+        protocol: STREAMABLE
+        # Tools are discovered from @McpTool methods; see mcp/KnowledgeBaseTools.
+        annotation-scanner:
+          enabled: true
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:}
+      chat:
+        options:
+          # Model IDs are rows in the `models` table; this is the synthesis default.
+          # Sampling parameters are deliberately unset — current Claude models reject
+          # non-default temperature/top_p values.
+          model: claude-sonnet-5
+          max-tokens: 4096
+
+# Spring Modulith's JDBC event publication registry is the durable outbox: application
+# events are persisted in the same transaction as the write and retried on restart.
+modulith:
+  events:
+    jdbc:
+      schema-initialization:
+        # The event_publication table is created by V1__baseline.sql instead. Both
+        # initializers run at startup with no ordering between them, and whichever
+        # goes first leaves a non-empty schema that Flyway then refuses to migrate.
+        enabled: false
+    # Off deliberately. It resubmits every incomplete publication at each start with no
+    # record of how often one has already been tried, so a document that fails
+    # permanently is retried forever. IngestionRecovery does the same job bounded by
+    # completionAttempts.
+    republish-outstanding-events-on-restart: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: when-authorized
+  health:
+    mail:
+      # Off. Adding spring-boot-starter-mail brings a health indicator that opens an SMTP
+      # connection, and a failure there marks the whole service DOWN — which fails the
+      # readiness probe and removes an instance that is still answering searches and
+      # questions perfectly well. Only registration and password reset depend on mail, so
+      # its outage is not this service's outage. The cost is that nothing now reports a
+      # mail server that has stopped answering.
+      enabled: false
+  metrics:
+    tags:
+      application: rover-notes-api
+
+# Application configuration. Retrieval limits are tuned against the eval harness rather
+# than guessed; `docs/RESULTS.md` records the run behind each value that has been moved.
+rover:
+  # The agent loop, off by default. It reaches the same corpus as the single retrieval
+  # pass and costs more model calls, so it is adopted only if the generation eval shows a
+  # resolvable improvement — the rule that kept reranking off and turned the router on.
+  # Requested per query with ?agent=true meanwhile.
+  agent:
+    enabled: false
+    # Searches one question may make. The bound exists because a model that keeps
+    # searching is what turns one question into an open-ended bill; at the limit the loop
+    # asks for an answer from what it has rather than cutting off with nothing.
+    #
+    # Two, on published evidence: a component ablation for multi-hop QA
+    # (arXiv 2606.21553) reports that two retrieval iterations capture 95% of the gains of
+    # five, with no meaningful benefit from deeper loops, and that most of the gain comes
+    # from having a short loop at all. Worth re-deriving against this corpus if the loop is
+    # adopted by default.
+    max-searches: 2
+    # Passages per search, matching the single pass so the two are compared on equal
+    # footing. Measured over the 36 two-hop questions, the loop takes exactly 2.00 model
+    # calls per question — one search and then an answer — so it does not accumulate
+    # passages across iterations. At ten it puts every document a question needs in front
+    # of the model 31 times of 36, against the single pass's 30.
+    search-limit: 10
+    # Mark each search result as a cache breakpoint, so later iterations read the passages
+    # they already sent at a tenth of the input rate instead of the full one. A write costs
+    # 1.25x, so this is worthwhile once more than about 12% of questions search more than
+    # once; see AgentAnswerService for the arithmetic behind that figure. The recorded cost
+    # stays accurate either way — llm_usage prices cache reads and writes separately.
+    cache-prompt: true
+
+  # How often a caller may ask, as distinct from what their model calls may cost. A token
+  # bucket per caller in Postgres rather than in memory: the application may run as more
+  # than one task, and an in-process limiter multiplies the effective limit by the task
+  # count while continuing to look correct.
+  #
+  # Capacity equals the per-minute allowance in each case, so a caller who has been idle
+  # for a minute may spend it at once and is then held to the sustained rate.
+  rate-limit:
+    enabled: true
+    # Grounded in the measured envelope rather than picked. Throughput plateaus at about
+    # 106 requests a second on this hardware and the latency budget breaks between ten and
+    # twenty concurrent users (`docs/RESULTS.md`), so one caller at two a second is under
+    # 2% of what the instance serves — far above what a person browsing reaches, and far
+    # below what a client in a loop needs to occupy the instance.
+    api-per-minute: 120
+    # Lower because a write costs more than a read: it chunks and embeds the document,
+    # against the same embedding server that is already the largest single contributor to
+    # search latency under load.
+    ingest-per-minute: 20
+    # Keyed on client address, since these callers have no account yet. Registration hashes
+    # a password at Argon2's 19 MiB baseline and sends mail, and a reset sends mail to an
+    # address the caller names; ten a minute is well past what one person needs and well
+    # under what makes either worth doing in bulk.
+    auth-per-minute: 10
+    # How often the finished buckets are removed. One row per caller per bucket is written
+    # and, for the address-keyed bucket, never reclaimed otherwise — every distinct address
+    # that reaches registration leaves one. What counts as finished is not set here: a
+    # bucket refilled to capacity answers the next request identically to no bucket at all,
+    # so the threshold is derived from the allowances above rather than configured. Nothing
+    # depends on the timing of a pass, only on how large the table grows between them.
+    sweep-interval: 15m
+
+  identity:
+    # Appears in every token this service issues and in the discovery document, so it has
+    # to be the URL callers actually reach the service at rather than a placeholder.
+    # Deliberately without a default. This is the address tokens claim to come from and
+    # the one clients validate against, so a fallback would let a deployed service start
+    # and advertise localhost — tokens that look fine here and are rejected everywhere
+    # else. Failing on boot is the louder half of that trade. The local profile supplies
+    # it in application-local.yml.
+    issuer: ${ROVER_ISSUER_URI}
+    # 32 bytes, base64, protecting the private half of each signing key at rest.
+    # Deliberately without a default: a service that cannot read its signing keys should
+    # fail on boot rather than at the first sign-in. Generate with:
+    #     openssl rand -base64 32
+    key-encryption-key: ${ROVER_KEY_ENCRYPTION_KEY:}
+    # How long a signing key stays publishable. Rotation is additive, so a key keeps
+    # validating the tokens it signed until this elapses.
+    signing-key-lifetime: 90d
+    # Sign-in failures before an account is locked, and for how long. The lock lapses
+    # rather than persisting, so knowing an address is not enough to deny its owner access.
+    failed-login-threshold: 10
+    lockout: 15m
+    # A confirmation link can wait a day; a reset link is a live credential for as long as
+    # it is valid, so it gets an hour.
+    verification-token-ttl: 24h
+    reset-token-ttl: 1h
+    # The From address on both messages. Required outside the local profile, where mail is
+    # written to the log instead of sent.
+    mail-from: ${ROVER_MAIL_FROM:no-reply@rover.invalid}
+    # Where a link in a verification or reset message lands. The interface, not this
+    # service: /auth/verify and /auth/reset take a JSON body over POST, so a browser
+    # following a link to either arrives with a GET and is told the method is not allowed.
+    # The pages at /account/verify and /account/reset read the token out of the query and
+    # submit it.
+    interface-url: ${ROVER_INTERFACE_URL:http://localhost:3000}
+    # The web interface, registered as a public client with PKCE required. A browser
+    # application cannot hold a secret, so the code exchange is what proves the caller.
+    web-client-id: rover-web
+    web-redirect-uris: ${ROVER_WEB_REDIRECT_URIS:http://localhost:3000/auth/callback}
+
+  ml:
+    embeddings-url: ${EMBEDDINGS_URL:http://localhost:8081}
+    # Bounds on the embedding server, not latency controls. A query embedding measured
+    # 6 ms alone and 92 ms at the 95th percentile under 20-user load, so a second is
+    # ample headroom and still leaves the request answerable from the lexical channel.
+    # Ingestion embeds batches of 32 off the read path with nothing waiting, so it gets
+    # room to finish rather than handing the outbox work that would have succeeded.
+    query-timeout: 1s
+    ingest-timeout: 30s
+    reranker-url: ${RERANKER_URL:http://localhost:8082}
+    # Bounded so a slow model server costs result quality rather than availability;
+    # RerankClient falls back to the fused ranking when the call does not return.
+    reranker-timeout: 5s
+    # TEI rejects a request carrying more texts than its max_client_batch_size, which
+    # defaults to 32. Candidates are split into batches of this size and merged, so the
+    # rerank depth is not silently capped by a server-side setting.
+    reranker-batch-size: 32
+    # cross-encoder | late-interaction. Which reranker scores the candidates when
+    # reranking is on at all — a separate decision from `rerank-enabled` below, which is
+    # whether to rerank.
+    #
+    # Late interaction, on the SciFact measurement in `docs/RESULTS.md`: +0.0510 nDCG@10
+    # with a 95% interval of +0.0291 to +0.0734, over 300 queries where 85 improved and
+    # 27 regressed. The 42-document corpus could not separate the two — it has recall@20
+    # of 1.0000, so both rerankers reorder a list that already holds every relevant
+    # passage — which is why the default follows the larger collection.
+    #
+    # It is the slower of the two: 7,717 ms against 2,224 ms at p95 on SciFact, because
+    # each of 40 candidates is encoded per query rather than scored as a pair. That cost
+    # is why `rerank-enabled` stays false; this setting only decides which reranker runs
+    # for a caller who asked for one.
+    rerank-strategy: ${RERANK_STRATEGY:late-interaction}
+    # The late-interaction reranker runs inside the Python service rather than in the TEI
+    # container, because TEI serves single-vector models and this one emits a vector per
+    # token. Same host as parsing; named separately so the two can be moved apart.
+    late-interaction-url: ${LATE_INTERACTION_URL:http://localhost:8000}
+    # Generous next to the cross-encoder's 5s: the first call after a restart loads the
+    # model, measured at about 11 seconds on this machine, and timing that out would make
+    # the first search after every deploy fall back to the fused ranking.
+    late-interaction-timeout: 30s
+    # Must match the vector(384) column in V1__baseline.sql. BAAI/bge-small-en-v1.5
+    # produces 384 dimensions; changing the model means a new column and a backfill.
+    embedding-dimensions: 384
+  usage:
+    # A rolling cap on model spend per owner, checked before a request rather than after,
+    # since a refusal is only useful while it can still prevent the spend. An answer over
+    # this corpus measured about $0.015, so this is roughly three hundred a day: it bounds
+    # a loop that has gone wrong rather than rationing ordinary use. Set to 0 to disable.
+    #
+    # The window rolls rather than resetting at a fixed hour, which would concentrate every
+    # capped owner's retry at the same instant and hand a late-evening spender a fresh
+    # allowance an hour later.
+    cap-usd: 5.00
+    window: 24h
+  # Where the original of an uploaded file is kept. The extracted text is what gets
+  # indexed; this is what a reader is handed when they follow a citation to page 34,
+  # since only the original has a page 34.
+  #
+  # MinIO locally, S3 in a deployment — the same API, differing by an endpoint and a
+  # credential, which is why the AWS SDK is used against both.
+  storage:
+    enabled: ${ROVER_STORAGE_ENABLED:true}
+    # s3 | azure-blob. The S3 client covers MinIO locally and anything S3-compatible in a
+    # deployment; Azure Blob does not speak that API and has its own client. Defaults to
+    # s3 so a local checkout needs no storage configuration.
+    provider: ${ROVER_STORAGE_PROVIDER:s3}
+    # The container name under either provider.
+    bucket: ${ROVER_STORAGE_BUCKET:rover-uploads}
+
+    # S3 provider.
+    endpoint: ${ROVER_STORAGE_ENDPOINT:http://localhost:9000}
+    access-key: ${ROVER_STORAGE_ACCESS_KEY:rover}
+    secret-key: ${ROVER_STORAGE_SECRET_KEY:roverrover}
+    region: ${ROVER_STORAGE_REGION:us-east-1}
+
+    # Azure Blob provider. A deployment sets the account URL alone and authenticates with
+    # the container app's managed identity, so no storage key exists to rotate or leak.
+    # The connection string is for a local run against Azurite and is empty otherwise.
+    account-url: ${ROVER_STORAGE_ACCOUNT_URL:}
+    connection-string: ${ROVER_STORAGE_CONNECTION_STRING:}
+
+  # The Python service that turns an uploaded file into text. Separate from the ML
+  # endpoints it shares a process with, because this one is reached on the write path
+  # and the timeout it wants is nothing like a query's.
+  parsing:
+    url: ${ROVER_PARSING_URL:http://localhost:8000}
+    # A long document is minutes of CPU, and cutting it off at a read-path budget would
+    # refuse exactly the files this exists for. Bounded rather than unbounded: the
+    # service caps pages and bytes, and waiting forever on one that has stopped
+    # answering would hold a request thread indefinitely.
+    timeout: 120s
+
+  ingestion:
+    # Model-written chunk annotation, submitted through the Message Batches API at half
+    # price. This is what `chunks.contextualized_content` was added for in the first
+    # migration and never populated.
+    #
+    # Off, and not merely unmeasured. The deterministic form of the same technique —
+    # prefixing each chunk with its document title and section heading, at no model cost —
+    # measures -0.0148 nDCG@10 on this corpus with a confidence interval spanning zero.
+    # A model writing the sentence is strictly more informative than a heading, so it may
+    # do better; that is a hypothesis, and turning this on before it is measured would be
+    # spending money on one.
+    #
+    # Batches take minutes to hours, so nothing on the read path may use this. It is a
+    # bulk-import path: submit at ingest, apply when the batch ends.
+    bulk-annotation:
+      enabled: ${ROVER_BULK_ANNOTATION:false}
+      # Haiku, because the task is one sentence describing where a chunk sits. The
+      # generation comparison measured Sonnet's advantage on answering, not on this.
+      model: claude-haiku-4-5
+      max-tokens: 200
+      base-url: https://api.anthropic.com
+      timeout: 60s
+      # How often the sweep asks whether a submitted batch has ended. Batches are
+      # documented as finishing inside 24 hours and usually much sooner; polling faster
+      # than this spends requests on an answer that changes on the order of minutes.
+      poll-interval: 2m
+
+    # fixed | semantic. Fixed windows are the committed default; semantic chunking cuts
+    # where the text changes subject, at the cost of one embedding per sentence at
+    # ingest. Compared on the eval set rather than assumed — see `docs/RESULTS.md`.
+    chunking: fixed
+    # A failing document is retried this many times in total before it is left alone in
+    # the registry for inspection. Transient failures — the embedding server restarting
+    # mid-ingest — recover well inside this; permanent ones stop costing work.
+    max-index-attempts: 5
+    # How often the sweep looks for work to resubmit. A floor on the retry delay rather
+    # than the delay itself — a publication is offered at most once per sweep, and the
+    # backoff below decides whether it is due.
+    retry-interval: 60s
+    # The delay after the first failed attempt, doubling per attempt. The bound alone
+    # still retries a doomed document five times in five minutes, each one a call to a
+    # service that is already failing — so the retries arrive fastest exactly when
+    # something is broken. Transient failures still recover on the first retry, which is
+    # not delayed at all.
+    retry-backoff: 60s
+    # The ceiling on that doubling. At five attempts the sequence is 0s, 60s, 120s, 240s,
+    # so the cap is not reached at the committed bound; it exists so raising
+    # max-index-attempts does not silently produce hour-long gaps.
+    max-retry-backoff: 30m
+    # none | heading. The deterministic form of contextual retrieval: prefix each chunk
+    # with its document title and section heading before embedding it, so a passage is
+    # findable by the words its own text assumes the reader already has. Applied to the
+    # embedded text only — the stored content stays exactly the span it came from, since
+    # a citation points at it by character offset. See `docs/RESULTS.md`.
+    chunk-context: none
+    # Breakpoint threshold, as a percentile of the sentence-to-sentence distances within
+    # each document, so a varied document and a uniform one get different cut-offs from
+    # the same setting. Only read when chunking is semantic.
+    breakpoint-percentile: 95
+    # A chunk below the minimum has too little context to embed meaningfully; above the
+    # maximum, the split has bought nothing over one whole-document chunk.
+    min-chunk-chars: 300
+    max-chunk-chars: 2400
+  retrieval:
+    # dense | lexical | hybrid. The eval harness overrides this per request so each
+    # channel can be scored on its own; this value is what production traffic gets.
+    # Hybrid measured 0.9356 nDCG@10 against 0.8969 for dense alone — see
+    # `docs/RESULTS.md` for the run behind that number.
+    mode: hybrid
+    # Stage 0. Sends a single-token, identifier-shaped query to the lexical channel.
+    # Worth +0.0291 nDCG@10 over the known-item slice (95% CI +0.0041 to +0.0567, 7
+    # queries better and 1 worse of 89) at no measured cost on the semantic golden set,
+    # where it fires on 2 of 86 queries for a net +0.0000. Naming a mode suppresses it,
+    # and ?route=false turns it off for one query.
+    route-enabled: true
+    candidate-limit: 100   # per channel, before fusion
+    rerank-limit: 40       # cross-encoder input — CPU latency bound, see docs/ARCHITECTURE.md
+    # Switched on in the commit that records the reranker's measured delta, not in the
+    # one that implements it. Callers can still request it per query with ?rerank=true.
+    rerank-enabled: false
+    final-limit: 10        # returned to the LLM
+    # Cormack et al. 2009 default, see docs/ARCHITECTURE.md. Swept over 10, 30, 60 and 100: k=30,
+    # 60 and 100 give identical per-query scores, and k=10 moves three queries by an
+    # amount this set cannot resolve.
+    rrf-k: 60
+    # hnsw.ef_search for the dense scan. pgvector documents that it must be at least the
+    # requested limit, and the server default of 40 is below candidate-limit, so the dense
+    # channel supplies 40 candidates to fusion rather than 100. Measured on a collection
+    # large enough for the planner to use the index (7,263 chunks): raising it to 100
+    # moves 3 queries of 300 for +0.0005 nDCG@10, CI -0.0013 to +0.0028, and costs 22 ms
+    # of p95. A candidate list of 40 already holds what reaches a cutoff of 10. Left at 0
+    # — server default. Worth revisiting at a depth where 40 is genuinely limiting: a
+    # reranker fed from a wider list, or a recall target beyond 20. See `docs/RESULTS.md`.
+    ef-search: 0
+    # rrf | convex. Rank fusion is the committed default; convex combination of min-max
+    # normalised scores is the alternative the literature reports as stronger. Measured
+    # at alpha 0.3, 0.5 and 0.8: the best of them leads by 0.0101 with an interval that
+    # includes zero, which does not justify a change of default. See `docs/RESULTS.md`.
+    fusion: rrf
+    convex-alpha: 0.8      # weight on the dense channel, Bruch et al. TOIS 2023
+
+logging:
+  level:
+    dev.rovernotes: INFO

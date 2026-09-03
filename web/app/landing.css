@@ -1,0 +1,477 @@
+/*
+ * The landing page.
+ *
+ * A direct, hardcoded port of the nominal.so-styled clone built earlier: cream and
+ * near-black throughout, a light display serif for headings, a geometric sans for body
+ * copy, pastel floating badges behind the headline, and a black notched-corner button as
+ * the one call-to-action shape. These are fixed values rather than the application's own
+ * `--bg`/`--fg`/`--accent` tokens on purpose — this page does not follow the rest of the
+ * interface's design system or its dark-mode inversion; it has its own, scoped to
+ * `.landing` so nothing outside this page is affected.
+ *
+ * main carries the padding every other page wants. The landing page supplies its own per
+ * band, so it cancels the outer one rather than nesting inside it.
+ */
+
+.landing {
+  margin: -2rem -1.5rem -5rem;
+  font-family: var(--landing-sans), ui-sans-serif, system-ui, sans-serif;
+  color: var(--land-fg);
+  background: var(--land-bg);
+
+  --land-bg: #fdfff8;
+  --land-fg: #151414;
+  --land-muted: #5a5a5a;
+  --land-muted-2: #767676;
+  --land-alt-bg: #f3f7eb;
+  --land-border: rgba(21, 20, 20, 0.1);
+
+  --pill-periwinkle: #b5c4f5;
+  --pill-yellow: #f9eba6;
+  --pill-mint: #5adeb7;
+  --pill-salmon: #f2a9a9;
+  --pill-sage: #e0eadd;
+  --pill-neutral: #e7e7e2;
+}
+
+.landing h1,
+.landing h2,
+.landing h3 {
+  font-family: var(--landing-serif), serif;
+  font-weight: 300;
+  color: var(--land-fg);
+}
+
+/* ------------------------------------------------------------------- bands */
+
+.band {
+  padding: 5.5rem 1.5rem;
+  border-top: 1px solid var(--land-border);
+}
+
+.band.alt {
+  background: var(--land-alt-bg);
+}
+
+.band-inner {
+  max-width: 68rem;
+  margin: 0 auto;
+}
+
+.landing h2 {
+  font-size: clamp(1.9rem, 1.3rem + 2vw, 2.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 0.6rem;
+}
+
+.landing h3 {
+  font-size: 1.3rem;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.35rem;
+}
+
+.section-lede {
+  color: var(--land-muted);
+  max-width: 42rem;
+  margin: 0 0 2.5rem;
+}
+
+/* -------------------------------------------------------------------- hero */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 6.5rem 1.5rem 5rem;
+  text-align: center;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1.5rem;
+  padding: 0.3rem 0.85rem 0.3rem 0.6rem;
+  font-size: 0.82rem;
+  color: var(--land-muted);
+  background: var(--land-bg);
+  border: 1px solid var(--land-border);
+  border-radius: 999px;
+}
+
+.eyebrow .dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: var(--pill-mint);
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 1.6rem + 3.5vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0 0 1.25rem;
+}
+
+/* No gradient: the source headline is a single flat color, both lines. */
+.hero .gradient {
+  color: inherit;
+}
+
+.lede {
+  font-size: 1.125rem;
+  color: var(--land-muted);
+  max-width: 34rem;
+  margin: 0 auto 2rem;
+}
+
+.fineprint {
+  font-size: 0.85rem;
+  color: var(--land-muted);
+  margin: 1.1rem 0 0;
+}
+
+/* --------------------------------------------------------------- hero pills */
+
+/* Six pastel badges drifting around the headline, each naming one entry from the
+   FEATURES list below it — a preview of "What is underneath" rather than new copy.
+   Pure CSS (no scroll listener, no client component): the file stays server-rendered,
+   which is the same constraint the call-to-action boundary above is documented against. */
+/* Bounded and centered — not `inset: 0`, which stretches to the full (unconstrained)
+   width of `.hero` and pushes the percentage-positioned pills far out toward the raw
+   edges of the window. 68rem is the narrowest this can go without a pill overlapping the
+   40rem headline column: the widest pill ("An agent loop when it helps") is ~12.6rem, and
+   the column needs at least that much clearance on each side to sit beside it rather than
+   on top of it. The height is fixed rather than `bottom: 0` (equivalently, the full height
+   of `.hero`, which runs on past the fineprint into its own bottom padding) so the bottom
+   pills stay next to the headline and buttons rather than drifting into that empty space. */
+.hero-orbit {
+  position: absolute;
+  top: 0;
+  height: 34rem;
+  left: 50%;
+  width: 100%;
+  max-width: 68rem;
+  transform: translateX(-50%);
+  z-index: 1;
+}
+
+.hero-blob {
+  position: absolute;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 999px;
+  opacity: 0.9;
+  filter: blur(20px);
+}
+
+.hero-pill {
+  position: absolute;
+  display: none;
+  align-items: center;
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--land-fg);
+  white-space: nowrap;
+  animation: pill-drift 6s ease-in-out infinite;
+}
+
+@keyframes pill-drift {
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Corner pills show from the point the hero has room either side of the reading column;
+   the two mid-height pills need more still, so they wait for a wider breakpoint. Tied to
+   the 68rem cap on .hero-orbit above: below these widths a pill would overlap the text
+   column rather than sit beside it. */
+@media (min-width: 68rem) {
+  .hero-pill-corner {
+    display: inline-flex;
+  }
+}
+
+@media (min-width: 78rem) {
+  .hero-pill-mid {
+    display: inline-flex;
+  }
+}
+
+.pill-1 {
+  top: 0.5rem;
+  left: 1%;
+  background: var(--pill-neutral);
+}
+.pill-2 {
+  top: 2.5rem;
+  right: 0.5%;
+  background: var(--pill-salmon);
+}
+.pill-3 {
+  top: 50%;
+  left: 0.5%;
+  transform: translateY(-50%);
+  background: var(--pill-mint);
+}
+.pill-4 {
+  top: 58%;
+  right: 0.5%;
+  background: var(--pill-mint);
+}
+.pill-5 {
+  bottom: 0.5rem;
+  left: 4%;
+  background: var(--pill-yellow);
+}
+.pill-6 {
+  bottom: 0;
+  right: 3%;
+  background: var(--pill-periwinkle);
+}
+
+/* --------------------------------------------------------------- call to action */
+
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.cta-primary,
+.cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.85rem;
+  padding: 0 1.5rem;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: transform 0.16s ease;
+}
+
+/* The primary action's two corners are chamfered off — the one shape used nowhere else
+   on the page, so the single most important control is not mistaken for a smaller one. */
+.cta-primary {
+  border: none;
+  color: var(--land-bg);
+  background: var(--land-fg);
+  border-radius: 0;
+  padding: 0 1.65rem;
+  clip-path: polygon(0 0, 88% 0, 100% 38%, 100% 100%, 12% 100%, 0 82%);
+}
+
+.cta-primary:hover {
+  transform: scale(1.02);
+}
+
+.cta-secondary {
+  color: var(--land-fg);
+  background: transparent;
+  border: 1px solid var(--land-border);
+}
+
+.cta-secondary:hover {
+  border-color: var(--land-fg);
+}
+
+.cta-quiet {
+  justify-content: center;
+}
+
+/* -------------------------------------------------------------------- demo */
+
+/* The recording is 800px wide. Scaling it past that is upscaling a GIF, so the band holds
+   it at its own size and centres it rather than filling the column. */
+.demo {
+  display: block;
+  width: 100%;
+  max-width: 50rem;
+  margin: 0 auto;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid var(--land-border);
+  background: var(--land-bg);
+}
+
+/* ------------------------------------------------------------------- cards */
+
+.steps,
+.examples,
+.features,
+.uses,
+.numbers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.steps {
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+}
+.features {
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+/* Four cards each. A three-column track would leave one of them alone on a second row,
+   which reads as a missing card rather than as the end of the list. */
+.examples,
+.uses {
+  grid-template-columns: repeat(auto-fit, minmax(24rem, 1fr));
+}
+
+.steps li,
+.examples li,
+.features li,
+.uses li {
+  padding: 1.5rem;
+  border: 1px solid var(--land-border);
+  border-radius: 16px;
+  background: var(--land-bg);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.steps li:hover,
+.examples li:hover,
+.features li:hover,
+.uses li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px -12px rgba(21, 20, 20, 0.18);
+}
+
+.steps p,
+.examples .note,
+.features p,
+.uses p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--land-muted);
+}
+
+.step-n {
+  display: block;
+  font-family: var(--landing-serif), serif;
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--land-muted-2);
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 0.55rem;
+}
+
+/* ---------------------------------------------------------------- examples */
+
+.kind {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--land-fg);
+  border: 1px solid var(--land-border);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  margin-bottom: 0.85rem;
+}
+
+.examples .question {
+  margin: 0 0 0.5rem;
+  font-family: var(--landing-serif), serif;
+  font-weight: 300;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+}
+
+/* ----------------------------------------------------------------- numbers */
+
+.numbers {
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+}
+
+.numbers li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 1.5rem;
+  border: 1px solid var(--land-border);
+  border-radius: 16px;
+  background: var(--land-bg);
+  text-align: center;
+}
+
+.figure {
+  font-family: var(--landing-serif), serif;
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.figure-label {
+  font-size: 0.88rem;
+}
+.figure-note {
+  font-size: 0.78rem;
+  color: var(--land-muted);
+}
+
+/* ------------------------------------------------------------------ closer */
+
+.closer {
+  padding: 6rem 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--land-border);
+}
+
+.closer .section-lede {
+  margin-inline: auto;
+}
+
+/* ------------------------------------------------------------------ footer */
+
+.landing-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 68rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 2.5rem;
+  font-size: 0.85rem;
+  color: var(--land-muted);
+  border-top: 1px solid var(--land-border);
+}
+
+.foot-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.landing-foot a {
+  color: var(--land-muted);
+  text-decoration: none;
+}
+
+.landing-foot a:hover {
+  color: var(--land-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-pill {
+    animation: none;
+  }
+}
